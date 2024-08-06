@@ -1,0 +1,27 @@
+[
+    {"id": 1, "question": "What is Capital City of England ?", "options":["Manchester", "Leeds", "Cambridge", "London"], "correct-answer":"London"},
+    {"id": 2, "question": "What are the 4 countries in UK ?", "options":["England, Northern Ireland, Wales and Scotland","England, Shetland, Wales and Scotland", "England, Shetland, Wales and Orkney", "Glassgow, Wales, England and Ireland"], 
+    "correct-answer":"England, Northern Ireland, Wales and Scotland"},
+    {"id": 3, "question": "What is UK's current approximate population ?", "options":["Manchester", "Leeds", "Cambridge", "London"], "correct-answer":"London"},
+    {"id": 4, "question": "Select the city in England that has an eroding coast ? ", "options":["Manchester", "Happisburgh", "Cambridge", "London"], "correct-answer":"Happisburgh"},
+    {"id": 5, "question": "What are the 4 oceans that surrounds UK ?", "options":["North Atlantic Ocean, North Sea, Irish Sea and Pacific Ocean", 
+    "North Sea, North Atlantic Ocean, Arctic Ocean and Pacific Ocean","North Sea, North Atlantic Ocean, English Channel and Irish Sea", "North Atlantic Ocean, Arctic Ocean, Pacific Ocean and Southern Ocean"], 
+    "correct-answer":"North Sea, North Atlantic Ocean, English Channel and Irish Sea"},
+    {"id": 6, "question": "What year did UK joined world war I ?", "options":["1930", "1945", "1920", "1914"], "correct-answer":"1914"},
+    {"id": 7, "question": "When was the Tudor period ? ", "options":["1485-1603", "1484-1602", "1483-1605", "1481-1610"], "correct-answer":"1485-1603"},
+    {"id": 8, "question": "What year did Henry VIII became king of England ?", "options":["1513", "1506", "1512", "1509"], "correct-answer": "1509"},
+    {"id": 9, "question": "Who is the father of Queen Elizabeth I ?", "options":["Jacob VI", "Henry VIII", "Authur VII", "James II"], "correct-answer":"Henry VIII"},
+    {"id": 10, "question": "When was the Stuart period ? ", "options":["1610-1715", "1604-1715", "1603-1714", "1605-1714"], "correct-answer":"1603-1714"},
+    {"id": 11, "question": "What religion do a large fraction of UK follow ? ", "options":["Christianity", "Sikhism", "Islam", "Judaism"], "correct-answer":"Christianity"},
+    {"id": 12, "question": "What are the festivals in Christianity ? ", "options":["Christmas and Easter", "Christmas and Easter Sunday", "Good Friday, Easter and Christmas", "Palm Sunday, Good Friday, Easter and Christmas"], "correct-answer":"Christmas and Easter"},
+    {"id": 13, "question": "What are the pilgrimage places for Christianity? ", "options":["Church of England", "Lourdes and Iona", "Lourdes", "Iona"], "correct-answer":"Lourdes and Iona"},
+    {"id": 14, "question": "What is the symbol of Christianity", "options":["Cross", "Sword", "Lion", "Knight"], "correct-answer":"London"},
+    {"id": 15, "question": "In year 2025, what date is Easter ?", "options":["21st April 2025", "22nd April 2025", "18th April 2025", "20th April 2025"], "correct-answer":"20th April 2025"},
+    {"id": 16, "question": "In the year 2018, what was the popular music genre in UK?", "options":["Pop", "Jazz", "Oprah", "Rock"], "correct-answer":"Pop"},
+    {"id": 17, "question": "What is the name of the traditional instrument of England ? ", "options":["Flute", "Drum", "Pipe/Tabor", "Gituar"], "correct-answer":"Pipe/Tabor"},
+    {"id": 18, "question": "Which artist was born in the UK ?", "options":["Levro Deculley", "Jacob Robbinson", "Harry Styles", "Kate McKanny"], "correct-answer":"Harry Styles"},
+    {"id": 19, "question": "Which music TV show is based in UK ? ", "options":["Country Music Festival", "British Music Vibes", "Music Festive ball London", "Eurovision"], "correct-answer":"London"},
+    {"id": 20, "question": "Which city was Adele born ?", "options":["London", "Cambridge", "Oxford", "Exeter"], "correct-answer":"London"}
+
+
+]
