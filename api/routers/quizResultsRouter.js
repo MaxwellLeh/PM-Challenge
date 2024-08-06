@@ -1,8 +1,9 @@
 const express = require("express");
-const { getQuizResults } = require("../controllers/quizResultsController");
+const { createResult, getResult, index} = require("../controllers/quizResultsController");
 
 const router = express.Router();
-
-router.get("/", getQuizResults);
+router.get("/", index);
+router.get("/:id", getResult);
+router.post("/", createResult);
 
 module.exports = router;
