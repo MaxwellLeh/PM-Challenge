@@ -55,6 +55,7 @@ INSERT INTO Countries (country_name, capital, continent, population, area, offic
 ('Egypt', 'Cairo', 'Africa', 102334404, 1002450, 'Arabic'),
 ('Germany', 'Berlin', 'Western Europe', 83783942, 357022, 'German');
 
+
 -- Create the QuizQuestions table
 CREATE TABLE IF NOT EXISTS QuizQuestions (
     question_id SERIAL PRIMARY KEY,
