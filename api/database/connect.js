@@ -1,7 +1,21 @@
-const { Pool } = require("pg")
+const {Pool} = require('pg')
+require('dotenv').config()
 
-const db = new Pool ({
+const db = new Pool({
     connectionString: process.env.DB_URL
 })
 
-module.exports = db
+module.exports=db
+
+
+
+
+
+
+// const { Pool } = require("pg");
+
+
+//console.log("DB connection established.");
+
+//module.exports = db;
+
