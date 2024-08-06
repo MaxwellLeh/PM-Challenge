@@ -2,12 +2,12 @@ console.log("In entries controller line 1")
 const Feedback= require('../models/feedbackModel')
 //const User = require('../models/User')
 
-/*const index = async (req, res) =>{
+const index = async (req, res) =>{
 
     console.log("In index controller")
     try{
     console.log("try blcok in index")
-    const response = await Entry.showAll()
+    const response = await Feedback.showAllFeedback()
     console.log("This is response in try block in index: ", response)
 
     res.status(200).json(response)
@@ -17,7 +17,8 @@ const Feedback= require('../models/feedbackModel')
     }
 
 
-}*/
+}
+
 const getFeedback = async (req, res) =>{
 
     try{
@@ -82,4 +83,4 @@ const createFeedback = async (req, res) =>{
 
 }*/
 
-module.exports = {createFeedback, getFeedback}
+module.exports = {createFeedback, getFeedback, index}

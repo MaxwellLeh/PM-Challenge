@@ -1,7 +1,7 @@
 // c
 
 const db = require('../database/connect')
-const User=require('./User')
+
 require('dotenv').config()
 console.log("In mdoel line 3")
 class Feedback{
@@ -16,18 +16,18 @@ class Feedback{
         this.submitted_at = entryObject.submitted_at
     }
 
-    //static async showAll(){
-        //console.log("In show ALL in Model")
-        //console.log("In Showall function  line 14")
-        //const response = await db.query('SELECT * FROM diary_entries;')
-        //if (response.rows.length === 0){
-            //throw new Error("Table in database has no Entries")
-        //} 
-        //return response.rows.map(item => new Entry(item))
-    //}//
+    static async showAllFeedback(){
+        console.log("In show ALL in Model")
+        console.log("In Showall function  line 14")
+        const response = await db.query('SELECT * FROM feedback;')
+        if (response.rows.length === 0){
+            throw new Error("Table in database has no Entries")
+        } 
+        return response.rows.map(item => new Feedback(item))
+    }
 
     static async showOneFeedback(id){
-        const response = await db.query('SELECT * FROM users WHERE feedback_id=$1;',[id])
+        const response = await db.query('SELECT * FROM feedback WHERE feedback_id=$1;',[id])
         console.log("This is response in Model, in create: ", response)
         if (response.rows.length !== 1){
             throw new Error("User details are not in table i.e. cannot find username in users table.")
@@ -44,7 +44,7 @@ class Feedback{
         const rating = data.rating
     
         console.log("In create in Model")
-        const response = await db.query('INSERT INTO feedback_form (role, comments, improvement, additional_comments,rating) VALUES ($1, $2, $3, $4, $5) RETURNING *;', [role, comments, improvement, additional_comments, rating])
+        const response = await db.query('INSERT INTO feedback (role, comments, improvements, additional_comments,rating) VALUES ($1, $2, $3, $4, $5) RETURNING *;', [role, comments, improvement, additional_comments, rating])
         console.log("This is response in Model, in create: ", response)
         if (response.rows.length !== 1){
             throw new Error("feedback entry already exists.")
