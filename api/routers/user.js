@@ -1,9 +1,7 @@
-// const { Router } = require("express");
-// const userController = require("../controllers/users");
+const { Router } = require('express');
+const leaderboardController = require('../controllers/leaderboard');
+const leaderboardRouter = Router();
 
-// const userRouter = Router();
+leaderboardRouter.get("/leaderboard", leaderboardController.index);
 
-// userRouter.post("/login", userController.login);
-// userRouter.post("/signup", userController.signup);
-
-// module.exports = userRouter;
+module.exports = leaderboardRouter;
