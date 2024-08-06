@@ -1,17 +1,31 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* body {
+    font-family: sans-serif;
     margin: 0;
+    background-color: #fff;
     color: black;
     display: flex;
     flex-direction: column;
     min-height: 110vh;
     position: relative;
     overflow-x: hidden;
+} */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-image: url(https://img.freepik.com/free-vector/flat-design-crown-background_23-2150965669.jpg?t=st=1722971060~exp=1722974660~hmac=96376dda0e4656b3ab0ed2802b8010c6b88645953543777dff4ec7628fe72598&w=1800);
+    background-size: cover;
+    background-position: center;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
 header {
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     color: #333;
     padding: 10px 20px;
     position: fixed;
@@ -28,24 +42,27 @@ nav {
     display: flex;
     width: 100%;
     padding: 0 20px;
-    align-items: center; 
+    align-items: center;
+    justify-content: space-between;
 }
 
 .nav-left {
-    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
 }
 
 .header-title {
     font-size: 34px;
     font-weight: bold;
-    color: #fa1010c7;
-    text-align: center;
+    color: #cd1f44;
     margin: 0;
-    flex: 0 1 auto; 
-    position: relative; 
-    right: 1%; 
+    margin-right: 150px; 
 }
-
 
 nav a {
     color: #333;
@@ -57,6 +74,7 @@ nav a {
 nav a.leaderboard {
     font-size: 20px;
     font-weight: bold;
+    margin-left: 10px; 
 }
 
 nav a:hover {
@@ -72,7 +90,7 @@ nav a:hover {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    margin-left: auto;
+    margin-right: 10px;
 }
 
 .logout-button:hover {
@@ -83,8 +101,8 @@ nav a:hover {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 15vw;
-    background-image: url(https://i.etsystatic.com/19101601/r/il/54f20d/3390837828/il_1140xN.3390837828_n9g4.jpg);
+    width: 20vw;
+    background-image: url(https://img.freepik.com/free-vector/flat-design-crown-background_23-2150965669.jpg?t=st=1722971060~exp=1722974660~hmac=96376dda0e4656b3ab0ed2802b8010c6b88645953543777dff4ec7628fe72598&w=1800);
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -98,34 +116,74 @@ nav a:hover {
     right: 0;
 }
 
-
-
 h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    font-size: 28px;
 }
 
 .table-container {
-    width: 33.33%;
-    max-width: 600px; 
-    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+    margin: 60px auto; 
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 12px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: #2b2b2b;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
 }
 
 th, td {
-    padding: 12px 15px;
-    border: 1px solid black;
+    padding: 15px 20px;
     text-align: center;
+    font-size: 16px;
 }
 
 thead {
-    background-color: #333;
+    background: linear-gradient(90deg, #cd1f44, #2b73d9);
     color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #3a3a3a;
+}
+
+
+th {
+    font-size: 18px;
+}
+
+td {
+    color: #f1f1f1;
+}
+
+
+
+.feedback-link {
+    text-align: center;
+    margin-top: 20px; 
+}
+
+.feedback-button {
+    display: inline-block;
+    background-color: #cd1f44;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }

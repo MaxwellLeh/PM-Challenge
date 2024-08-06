@@ -1,12 +1,16 @@
 const express = require("express");
+<<<<<<< HEAD
 const cors = require("cors")
 const logger = require("./middleware/logger")
 
-const usersRouter = require("./api/routers/usersRouter");
-const countriesRouter = require("./api/routers/countriesRouter");
-const quizResultsRouter = require("./api/routers/quizResultsRouter");
-const feedbackRouter = require("./api/routers/feedbackRouter");
-const quizQuestionsRouter = require("./api/routers/quizQuestionsRouter");
+=======
+
+const usersRouter = require("./routers/usersRouter");
+>>>>>>> 5b91687f90b450260a6e480d41d93645fc4e3eee
+const countriesRouter = require("./routers/countriesRouter");
+const quizResultsRouter = require("./routers/quizResultsRouter");
+const feedbackRouter = require("./routers/feedbackRouter");
+const quizQuestionsRouter = require("./routers/quizQuestionsRouter");
 const leaderboardRouter = require("./routers/leaderboardRouter")
 
 const app = express();
