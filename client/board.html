@@ -10,19 +10,27 @@
   <header>
     <nav>
       <div class="nav-left">
+        <img src="assets/logo.jpg" alt="Logo" class="logo">
         <a href="leaderboard.html" class="leaderboard">LEADERBOARD</a>
       </div>
-      <h1 class="header-title">THE PRIME MINISTER CHALLENGE</h1>
-      <button class="logout-button">Logout</button>
+      <div class="nav-center">
+        <h1 class="header-title">THE PRIME MINISTER CHALLENGE</h1>
+      </div>
+      <button id="logout-button" class="logout-button">Logout</button>
     </nav>
   </header>
   
 
   <div class="background-strip left"></div>
   <div class="background-strip right"></div>
-  
+
   <div id="map-container"></div>
 
   <script src="assets/board.js"></script>
+  <script>
+    document.getElementById('logout-button').addEventListener('click', function() {
+      window.location.href = 'login.html';
+    });
+  </script>
 </body>
 </html>

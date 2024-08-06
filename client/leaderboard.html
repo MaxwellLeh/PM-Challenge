@@ -10,10 +10,11 @@
     <header>
         <nav>
             <div class="nav-left">
+                <img src="assets/logo.jpg" alt="Logo" class="logo">
                 <a href="board.html" class="leaderboard">WORLD MAP</a>
             </div>
             <h1 class="header-title">LEADERBOARD</h1>
-            <button class="logout-button">Logout</button>
+            <button id="logout-button" class="logout-button">Logout</button>
         </nav>
     </header>
 
@@ -32,7 +33,6 @@
                     </tr>
                 </thead>
                 <tbody>
-    
                     <tr>
                         <td>Pape Matar Sarr</td>
                         <td>Prime Minister</td>
@@ -48,10 +48,23 @@
                         <td>Civil Servant</td>
                         <td>80</td>
                     </tr>
-          
+                    <tr>
+                        <td>Jamie McJamerson</td>
+                        <td>Assistant</td>
+                        <td>70</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
+        <div class="feedback-link">
+            <a href="feedback/feedback-form.html" class="feedback-button">Provide Feedback</a>
+        </div>
     </main>
+
+    <script>
+        document.getElementById('logout-button').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    </script>
 </body>
 </html>
