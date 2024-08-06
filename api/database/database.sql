@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Users (
 -- Countries Table
 CREATE TABLE IF NOT EXISTS Countries (
     country_id SERIAL PRIMARY KEY,
-    country_name VARCHAR(100) UNIQUE NOT NULL,
+    country_name VARCHAR(100) NOT NULL,
     capital VARCHAR(100),
     continent VARCHAR(50),
     population INT,
@@ -59,8 +59,8 @@ INSERT INTO Countries (country_name, capital, continent, population, area, offic
 -- Create the QuizQuestions table
 CREATE TABLE IF NOT EXISTS QuizQuestions (
     question_id SERIAL PRIMARY KEY,
-    country_id INT REFERENCES Countries(country_id) ON DELETE CASCADE,
     student_id INT REFERENCES Users(user_id) ON DELETE CASCADE,
+    country_id INT REFERENCES Countries(country_id) ON DELETE CASCADE,
     question_text TEXT NOT NULL,
     correct_answer TEXT NOT NULL,
     student_answer TEXT,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS QuizQuestions (
 -- 21 questions: 7 easy, 7 medium, 7 hard
 
 -- Questions for USA
-INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
+INSERT INTO QuizQuestions (student_id, country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (1, 'What is the capital of the USA?', 'Washington, D.C.', 'New York City', 'Los Angeles', 'Chicago', 'easy'),
 (1, 'Which river is the longest in the USA?', 'Missouri River', 'Mississippi River', 'Colorado River', 'Ohio River', 'easy'),
 (1, 'Which state is known as the "Sunshine State"?', 'Florida', 'California', 'Texas', 'Hawaii', 'easy'),
@@ -100,7 +100,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (1, 'Which USA President issued the Emancipation Proclamation?', 'Abraham Lincoln', 'Andrew Johnson', 'Ulysses S. Grant', 'James Buchanan', 'hard');
 
 -- Questions for UK 
-INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
+INSERT INTO QuizQuestions (student_id, country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (2, 'What is the capital of the UK?', 'London', 'Manchester', 'Edinburgh', 'Birmingham', 'easy'),
 (2, 'Which UK country is known as the "Land of the Red Dragon"?', 'Wales', 'Scotland', 'England', 'Northern Ireland', 'easy'),
 (2, 'What is the national flower of England?', 'Rose', 'Thistle', 'Daffodil', 'Shamrock', 'easy'),
@@ -126,7 +126,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (2, 'Which UK artist painted "The Persistence of Memory"?', 'Salvador Dalí', 'David Hockney', 'Francis Bacon', 'J.M.W. Turner', 'hard');
 
 -- Questions for India
-INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
+INSERT INTO QuizQuestions (student_id, country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (3, 'What is the capital of India?', 'New Delhi', 'Mumbai', 'Kolkata', 'Chennai', 'easy'),
 (3, 'Which river is considered the holiest in Hinduism?', 'Ganges', 'Yamuna', 'Indus', 'Brahmaputra', 'easy'),
 (3, 'Which Indian festival is known as the "Festival of Lights"?', 'Diwali', 'Holi', 'Navratri', 'Eid', 'easy'),
@@ -152,7 +152,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (3, 'Which Indian actor is known for his role in the film “Lagaan”?', 'Aamir Khan', 'Shah Rukh Khan', 'Salman Khan', 'Akshay Kumar', 'hard');
 
 -- Questions for Egypt
-INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
+INSERT INTO QuizQuestions (student_id, country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (4, 'What is the capital of Egypt?', 'Cairo', 'Alexandria', 'Giza', 'Luxor', 'easy'),
 (4, 'Which river is the longest in Egypt?', 'Nile', 'Amazon', 'Yangtze', 'Mississippi', 'easy'),
 (4, 'Which ancient wonder was located in Egypt?', 'Great Pyramid of Giza', 'Hanging Gardens of Babylon', 'Colossus of Rhodes', 'Statue of Zeus', 'easy'),
@@ -178,7 +178,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (4, 'Which historical period in Egypt is known as the "New Kingdom"?', '1570–1069 BC', '2686–2181 BC', '2055–1650 BC', '1069–664 BC', 'hard');
 
 -- Questions for Germany
-INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
+INSERT INTO QuizQuestions (student_id, country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (5, 'What is the capital of Germany?', 'Berlin', 'Munich', 'Frankfurt', 'Hamburg', 'easy'),
 (5, 'Which German composer wrote the "Moonlight Sonata"?', 'Ludwig van Beethoven', 'Johann Sebastian Bach', 'Wolfgang Amadeus Mozart', 'Richard Wagner', 'easy'),
 (5, 'What is the predominant language spoken in Germany?', 'German', 'French', 'Dutch', 'English', 'easy'),
@@ -202,3 +202,10 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (5, 'Which German scientist is known for his work on the photoelectric effect?', 'Albert Einstein', 'Max Planck', 'Werner Heisenberg', 'Niels Bohr', 'hard'),
 (5, 'Which German city is famous for its fairytale castle known as Neuschwanstein?', 'Füssen', 'Munich', 'Berlin', 'Frankfurt', 'hard'),
 (5, 'Which German emperor was known for his efforts to unify Germany in the 19th century?', 'Wilhelm I', 'Wilhelm II', 'Friedrich III', 'Otto von Bismarck', 'hard');
+
+-- Insert data into QuizResults table
+INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, time_taken) VALUES
+(1, 1, 'Washington, D.C.', 10, 1, '00:05:23'),
+(1, 1, 'Missouri River', 8, 2, '00:08:15'),
+(2, 2, 'London', 10, 1, '00:06:30'),
+(2, 2, 'Wales', 9, 2, '00:07:20');
