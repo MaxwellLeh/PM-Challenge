@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedbackForm</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="role">Please select your role:</label>
+                <select id="role" name="role" required>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="parents">Parents</option>
+                </select>
+            </div>
+
+        <div class="form-group">
+                <label for="rating">Please rate the new innovation (1-5):</label>
+                <select id="rating" name="rating" required>
+                    <option value="1">1 - Very Dissatisfied</option>
+                    <option value="2">2 - Dissatisfied</option>
+                    <option value="3">3 - Neutral</option>
+                    <option value="4">4 - Satisfied</option>
+                    <option value="5">5 - Very Satisfied</option>
+                </select>
+            </div>
+
+        <div class="form-group">
+                <label for="feedback">Please write a few words about what you think about the new app</label>
+                <textarea id="feedback" name="feedback" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="improvements">What do you think can be added or improved to make the learning more exciting?</label>
+            <textarea id="improvements" name="improvements" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Do you have any additional comments or suggestions?</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+        </div>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+    
+</body>
+</html>
