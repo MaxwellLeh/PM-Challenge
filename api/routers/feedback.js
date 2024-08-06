@@ -9,11 +9,11 @@
 // module.exports = userRouter;
 //
 const express = require('express')
-const usersControllers= require('../controllers/users.js')
-const usersRouter = express.Router()
+const feedbackControllers= require('../controllers/feedbackController.js')
+const feedbackRouters = express.Router()
 console.log("In entries Router line 4")
-//usersRouter.post('/login', usersControllers.showOneForAuthentication)
+feedbackRouters.post('/feedback', feedbackControllers.create)
 //usersRouter.post('/register', usersControllers.createRegister)
 
 
-module.exports = usersRouter
+module.exports = feedbackRouters

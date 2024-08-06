@@ -1,19 +1,19 @@
 // c
 
 const db = require('../database/connect')
+const User=require('./User')
 require('dotenv').config()
 console.log("In mdoel line 3")
-class User{
+class Feedback{
     constructor(entryObject){
         console.log("In line 6 constructor model")
-        this.user_id = entryObject.user_id
-        this.role=entryObject.role
-        this.first_name = entryObject.first_name
-        this.last_name = entryObject.last_name
-        this.email = entryObject.email
-        this.username = entryObject.username
-        this.password = entryObject.password
-        this.created_at = entryObject.created_at
+        this.feedback_id = entryObject.feedback_id
+        this.role = entryObject.role
+        this.comments=entryObject.comments
+        this.improvement =entryObject.improvement
+        this.additional_comments =entryObject.additional_comments
+        this.rating =entryObject.rating
+        this.submitted_at = entryObject.submitted_at
     }
 
     //static async showAll(){
@@ -26,32 +26,31 @@ class User{
         //return response.rows.map(item => new Entry(item))
     //}//
 
-    static async showOneUserEntry(data){
-        const first_name= data["first name"].toLowerCase()
-        const last_name= data["last name"].toLowerCase()
-        const response = await db.query('SELECT * FROM users WHERE LOWER(first_name)=$1 AND LOWER(last_name)=$2;', [first_name, last_name])
+    /*static async showOneUserEntry(data){
+        const username = data.username.toLowerCase()
+        const response = await db.query('SELECT * FROM users WHERE LOWER(username)=$1;', [username])
         console.log("This is response in Model, in create: ", response)
         if (response.rows.length !== 1){
             throw new Error("User details are not in table i.e. cannot find username in users table.")
         } 
         return new User(response.rows[0])
-    }
+    }*/
 
-    static async createRegister(data){
+    static async create(data){
         console.log("Increate in model")
-        const role= data.role
-        const first_name = data["first name"]
-        const last_name = data["last name"]
-        const email = data.email
-        const username = data.username
-        const password = data.password
+        const role = data.role
+        const improvement = data.improvement
+        const comments= data.comments
+        const additional_comments = data.additional_comments
+        const rating = data.rating
+    
         console.log("In create in Model")
-        const response = await db.query('INSERT INTO users (role, first_name, last_name, email, username, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;', [role, first_name, last_name,email, username, password])
+        const response = await db.query('INSERT INTO feedback_form (role, comments, improvement, additional_comments,rating) VALUES ($1, $2, $3, $4, $5) RETURNING *;', [role, comments, improvement, additional_comments, rating])
         console.log("This is response in Model, in create: ", response)
         if (response.rows.length !== 1){
-            throw new Error("User entry already exists.")
+            throw new Error("feedback entry already exists.")
         } 
-        return new User(response.rows[0])
+        return new Feedback(response.rows[0])
     }
 
     /*async update(data){
@@ -75,4 +74,4 @@ class User{
 
 }
 
-module.exports = User
+module.exports = Feedback

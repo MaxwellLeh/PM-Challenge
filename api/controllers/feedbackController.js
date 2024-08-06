@@ -1,4 +1,5 @@
 console.log("In entries controller line 1")
+const Feedback= require('../models/Feedback')
 const User = require('../models/User')
 
 /*const index = async (req, res) =>{
@@ -17,7 +18,7 @@ const User = require('../models/User')
 
 
 }*/
-const showOneForAuthentication = async (req, res) =>{
+/*const showOneForAuthentication = async (req, res) =>{
 
     try{
     const data=req.body
@@ -32,16 +33,18 @@ const showOneForAuthentication = async (req, res) =>{
     }
 
 
-}
+}*/
 
 console.log('line 19 controller')
-const createRegister = async (req, res) =>{
+const create = async (req, res) =>{
     try{
+        
         const data = req.body
         console.log('The data in create in controller is: ', data)
-        const response = await User.createRegister(data)
+    
+        const response = await Feedback.create(data)
         console.log('The response in create in controller is: ', response)
-        res.status(200).json(response)
+        res.status(201).json(response)
     } catch (err) {
         res.status(404).json({error: err.message})
     }
@@ -79,4 +82,4 @@ const createRegister = async (req, res) =>{
 
 }*/
 
-module.exports = {showOneForAuthentication, createRegister }
+module.exports = {create}
