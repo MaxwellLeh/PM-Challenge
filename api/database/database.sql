@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS QuizResults;
+DROP TABLE IF EXISTS Feedback;
+DROP TABLE IF EXISTS QuizQuestions;
+DROP TABLE IF EXISTS Countries;
+DROP TABLE IF EXISTS Users;
 
 CREATE TABLE IF NOT EXISTS Users (
     user_id SERIAL PRIMARY KEY,
@@ -48,22 +53,22 @@ CREATE TABLE IF NOT EXISTS Feedback (
 );
 
 -- Insert dummy users into the Users table
-INSERT INTO Users (user_id, role, first_name, last_name, email, username, password) VALUES
-(1,'Student', 'Alice', 'Smith', 'alice.smith@example.com', 'alice_smith', 'password123'),
-(2,'Student', 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson', 'password456'),
-(3, 'Student', 'Charlie', 'Williams', 'charlie.williams@example.com', 'charlie_williams', 'password789'),
-(4, 'Teacher', 'David', 'Brown', 'david.brown@example.com', 'david_brown', 'teacherpass1'),
-(4, 'Teacher', 'Eva', 'Jones', 'eva.jones@example.com', 'eva_jones', 'teacherpass2'),
-(4, 'Teacher', 'Frank', 'Garcia', 'frank.garcia@example.com', 'frank_garcia', 'teacherpass3');
+INSERT INTO Users (role, first_name, last_name, email, username, password) VALUES
+('Student', 'Alice', 'Smith', 'alice.smith@example.com', 'alice_smith', 'password123'),
+('Student', 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson', 'password456'),
+('Student', 'Charlie', 'Williams', 'charlie.williams@example.com', 'charlie_williams', 'password789'),
+('Teacher', 'David', 'Brown', 'david.brown@example.com', 'david_brown', 'teacherpass1'),
+('Teacher', 'Eva', 'Jones', 'eva.jones@example.com', 'eva_jones', 'teacherpass2'),
+('Teacher', 'Frank', 'Garcia', 'frank.garcia@example.com', 'frank_garcia', 'teacherpass3');
 
 
 -- Insert the countries into the Countries table
-INSERT INTO Countries (country_id, country_name, capital, continent, population, area, official_language) VALUES
-(1, 'USA', 'Washington, D.C.', 'North America', 331002651, 9833517, 'English'),
-(2, 'UK', 'London', 'Western Europe', 67886011, 242495, 'English'),
-(3, 'India', 'New Delhi', 'Asia', 1380004385, 3287263, 'Hindi, English'),
-(4, 'Egypt', 'Cairo', 'Africa', 102334404, 1002450, 'Arabic'),
-(5, 'Germany', 'Berlin', 'Western Europe', 83783942, 357022, 'German');
+INSERT INTO Countries (country_name, capital, continent, population, area, official_language) VALUES
+('USA', 'Washington, D.C.', 'North America', 331002651, 9833517, 'English'),
+('UK', 'London', 'Western Europe', 67886011, 242495, 'English'),
+('India', 'New Delhi', 'Asia', 1380004385, 3287263, 'Hindi, English'),
+('Egypt', 'Cairo', 'Africa', 102334404, 1002450, 'Arabic'),
+('Germany', 'Berlin', 'Western Europe', 83783942, 357022, 'German');
 
 
 -- Create the QuizQuestions table
