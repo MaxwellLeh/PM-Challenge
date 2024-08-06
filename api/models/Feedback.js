@@ -1,4 +1,3 @@
-// c
 
 const db = require('../database/connect')
 const User=require('./User')
