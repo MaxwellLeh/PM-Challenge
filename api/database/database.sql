@@ -72,7 +72,6 @@ CREATE TABLE IF NOT EXISTS QuizQuestions (
     country_id INT REFERENCES Countries(country_id) ON DELETE CASCADE,
     question_text TEXT NOT NULL,
     correct_answer TEXT NOT NULL,
-    student_answer TEXT,
     option_2 TEXT NOT NULL,
     option_3 TEXT NOT NULL,
     option_4 TEXT NOT NULL,
