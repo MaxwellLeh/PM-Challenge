@@ -1,6 +1,6 @@
 console.log("In entries controller line 1")
-const Feedback= require('../models/Feedback')
-const User = require('../models/User')
+const Feedback= require('../models/feedbackModel')
+//const User = require('../models/User')
 
 /*const index = async (req, res) =>{
 
@@ -18,12 +18,12 @@ const User = require('../models/User')
 
 
 }*/
-/*const showOneForAuthentication = async (req, res) =>{
+const getFeedback = async (req, res) =>{
 
     try{
-    const data=req.body
+    const id = req.params.id
    
-    const response = await User.showOneUserEntry(data)
+    const response = await Feedback.showOneFeedback(id)
     console.log("This is response in try block in index: ", response)
 
     res.status(200).json(response)
@@ -33,10 +33,10 @@ const User = require('../models/User')
     }
 
 
-}*/
+}
 
 console.log('line 19 controller')
-const create = async (req, res) =>{
+const createFeedback = async (req, res) =>{
     try{
         
         const data = req.body
@@ -82,4 +82,4 @@ const create = async (req, res) =>{
 
 }*/
 
-module.exports = {create}
+module.exports = {createFeedback, getFeedback}

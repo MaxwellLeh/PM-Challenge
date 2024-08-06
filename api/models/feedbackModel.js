@@ -26,15 +26,14 @@ class Feedback{
         //return response.rows.map(item => new Entry(item))
     //}//
 
-    /*static async showOneUserEntry(data){
-        const username = data.username.toLowerCase()
-        const response = await db.query('SELECT * FROM users WHERE LOWER(username)=$1;', [username])
+    static async showOneFeedback(id){
+        const response = await db.query('SELECT * FROM users WHERE feedback_id=$1;',[id])
         console.log("This is response in Model, in create: ", response)
         if (response.rows.length !== 1){
             throw new Error("User details are not in table i.e. cannot find username in users table.")
         } 
-        return new User(response.rows[0])
-    }*/
+        return new Feedback(response.rows[0])
+    }
 
     static async create(data){
         console.log("Increate in model")
