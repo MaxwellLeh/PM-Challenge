@@ -1,6 +1,6 @@
 const express = require("express");
 const cors=require('cors')
-const usersRouter = require("./api/routers/usersRouter");
+const usersRouter = require("./routers/usersRouter");
 const countriesRouter = require("./api/routers/countriesRouter");
 const quizResultsRouter = require("./api/routers/quizResultsRouter");
 const feedbackRouter = require("./api/routers/feedbackRouter");
