@@ -1,82 +1,59 @@
-console.log("In entries controller line 1")
-const User = require('../models/User')
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-/*const index = async (req, res) =>{
+const User = require("../models/User.js");
 
-    console.log("In index controller")
-    try{
-    console.log("try blcok in index")
-    const response = await Entry.showAll()
-    console.log("This is response in try block in index: ", response)
+async function register(req, res) {
+  try {
+    const data = req.body;
 
-    res.status(200).json(response)
-    } catch (err) {
-        console.log('In catch line 14 index controller')
-        res.status(500).json({error: err.message})
-    }
+    const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
 
+    data.password = await bcrypt.hash(data.password, salt);
+    const result = await User.create(data);
 
-}*/
-const showOneForAuthentication = async (req, res) =>{
-
-    try{
-    const data=req.body
-   
-    const response = await User.showOneUserEntry(data)
-    console.log("This is response in try block in index: ", response)
-
-    res.status(200).json(response)
-    } catch (err) {
-        
-        res.status(404).json({error: err.message})
-    }
-
-
+    res.status(201).send(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 }
 
-console.log('line 19 controller')
-const createRegister = async (req, res) =>{
-    try{
-        const data = req.body
-        console.log('The data in create in controller is: ', data)
-        const response = await User.createRegister(data)
-        console.log('The response in create in controller is: ', response)
-        res.status(200).json(response)
-    } catch (err) {
-        res.status(404).json({error: err.message})
+async function login(req, res) {
+  const data = req.body;
+  try {
+    const user = await User.getOneByUsername(data.username);
+    if (!user) {
+      throw new Error("No user with this username");
     }
+    const match = await bcrypt.compare(data.password, user.password);
 
+    if (match) {
+      const payload = { username: user.username };
+      const sendToken = (err, token) => {
+        if (err) {
+          throw new Error("Error in token generation");
+        }
+        res.status(200).json({
+          success: true,
+          token: token,
+        });
+      };
 
+      jwt.sign(
+        payload,
+        process.env.SECRET_TOKEN,
+        { expiresIn: 3600 },
+        sendToken
+      );
+    } else {
+      throw new Error("User could not be authenticated");
+    }
+  } catch (err) {
+    res.status(401).json({ error: err.message });
+  }
 }
 
-
-/*const update = async (req, res) =>{
-    try{
-        const data = req.body
-        const id = req.params.id
-        const entryObject = await Entry.showOneEntry(id)
-        const response = await entryObject.update(data)
-        console.log('The response in update in controller is: ', response)
-        res.status(200).json(response)
-    } catch (err) {
-        res.status(404).json({error: err.message})
-    }
-
-
-}*/
-
-/*const destroy = async (req, res) =>{
-    try{
-        const id = req.params.id
-        const entryObject = await Entry.showOneEntry(id)
-        const response = await entryObject.delete()
-        console.log('The response in update in controller is: ', response)
-        res.status(200).end()
-    } catch (err) {
-        res.status(409).json({error: err.message})
-    }
-
-
-}*/
-
-module.exports = {showOneForAuthentication, createRegister }
+module.exports = {
+  register,
+  login,
+};

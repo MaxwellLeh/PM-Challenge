@@ -3,9 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Interactive World Map</title>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <header>
+    <nav>
+      <div class="nav-left">
+        <a href="leaderboard.html" class="leaderboard">LEADERBOARD</a>
+      </div>
+      <h1 class="header-title">THE PRIME MINISTER CHALLENGE</h1>
+      <button class="logout-button">Logout</button>
+    </nav>
+  </header>
   
+
+  <div class="background-strip left"></div>
+  <div class="background-strip right"></div>
+  
+  <div id="map-container"></div>
+
+  <script src="assets/board.js"></script>
 </body>
 </html>

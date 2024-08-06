@@ -1,19 +1,19 @@
-const User = require('../models/User')
-const controller = require('../controllers/users')
-const authenticator = async (req, res) =>{
+const jwt = require("jsonwebtoken");
 
-    try{
-    const data=req.body
-   
-    const response = await User.showOneUserEntry(data)
-    console.log("This is response in try block in index: ", response)
+function authenticator(req, res, next) {
+  const token = req.headers.authorization;
 
-    res.status(200).json(response)
-    } catch (err) {
-        
-        res.status(404).json({error: err.message})
-    }
-
-
+  if (token) {
+    jwt.verify(token, process.env.SECRET_TOKEN, async (err, data) => {
+      if (err) {
+        res.status(401).json({ err: "Invalid token" });
+      } else {
+        next();
+      }
+    });
+  } else {
+    res.status(401).json({ err: "Missing token" });
+  }
 }
-module.exports(authenticator)
+
+module.exports = authenticator;

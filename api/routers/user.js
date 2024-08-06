@@ -1,19 +1,10 @@
-// const { Router } = require("express");
-// const userController = require("../controllers/users");
+const { Router } = require("express");
 
-// const userRouter = Router();
+const userController = require("../controllers/users.js");
 
-// userRouter.post("/login", userController.login);
-// userRouter.post("/signup", userController.signup);
+const userRouter = Router();
 
-// module.exports = userRouter;
-//
-const express = require('express')
-const usersControllers= require('../controllers/users.js')
-const usersRouter = express.Router()
-console.log("In entries Router line 4")
-//usersRouter.post('/login', usersControllers.showOneForAuthentication)
-//usersRouter.post('/register', usersControllers.createRegister)
+userRouter.post("/register", userController.register);
+userRouter.post("/login", userController.login);
 
-
-module.exports = usersRouter
+module.exports = userRouter;
