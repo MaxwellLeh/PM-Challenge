@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-<<<<<<<< HEAD:api/controllers/usersController.js
 const User = require("./models/userModel.js");
-========
-const User = require("../models/User.js");
->>>>>>>> 135e4c6fb6e707246f38d4d54dd105090e608360:api/controllers/users.js
 
 async function register(req, res) {
   try {
@@ -62,6 +57,3 @@ module.exports = {
   register,
   login,
 };
-=======
-// const 
->>>>>>> 135e4c6fb6e707246f38d4d54dd105090e608360
