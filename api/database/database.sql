@@ -173,7 +173,6 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (4, 'What is the primary language spoken in Egypt?', 'Arabic', 'English', 'French', 'Spanish', 'easy'),
 (4, 'Which city is known for its ancient pyramids and the Sphinx?', 'Giza', 'Cairo', 'Luxor', 'Aswan', 'easy'),
 (4, 'Which Egyptian god is associated with the sun?', 'Ra', 'Osiris', 'Horus', 'Anubis', 'easy'),
- 
 (4, 'Which Egyptian leader was known for his peace treaty with Israel?', 'Anwar Sadat', 'Gamal Abdel Nasser', 'Hosni Mubarak', 'Mohammed Morsi', 'medium'),
 (4, 'In which period did the Ptolemaic Dynasty rule Egypt?', 'Hellenistic Period', 'Old Kingdom', 'Middle Kingdom', 'New Kingdom', 'medium'),
 (4, 'What is the name of the famous ancient library located in Alexandria?', 'Library of Alexandria', 'Library of Ashurbanipal', 'Library of Pergamum', 'Library of Ephesus', 'medium'),
