@@ -12,9 +12,6 @@ document
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstname: form.get("firstname"),
-        lastname: form.get("lastname"),
-        email: form.get("email"),
         username: form.get("username"),
         password: form.get("password"),
       }),
