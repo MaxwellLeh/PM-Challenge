@@ -5,8 +5,6 @@ const {
   getTeacherLeaderboard,
 } = require("../controllers/leaderboardController");
 
-console.log("hey", getStudentLeaderboard);
-
 const router = express.Router();
 
 router.get("/students", getStudentLeaderboard);
