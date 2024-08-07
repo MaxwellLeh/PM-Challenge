@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS QuizResults (
     country_id INT,
     student_answer TEXT NOT NULL,
     total_score INT NOT NULL,
-    rank INT CHECK(rank BETWEEN 1 AND 5),
+    rank VARCHAR(50),
     time_taken TIME,
     FOREIGN KEY (student_id) REFERENCES Users(user_id)
         ON DELETE CASCADE,

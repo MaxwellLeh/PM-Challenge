@@ -6,4 +6,4 @@ router.get("/", index);
 router.get("/:id", getResult);
 router.post("/", createResult);
 
-module.exports = router;
+module.exports = router
