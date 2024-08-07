@@ -46,16 +46,21 @@
       let questions = [];
       let currentQuestion = [];
       let score = 0;
-      form.addEventListener("submit", function (e) {
+      form.addEventListener("submit", async function (e) {
+        
         e.preventDefault();
         const clicked = e.submitter.textContent;
         const index= questions.indexOf(currentQuestion)
-        if(index<questions.length) {
+        // if send after every question fetch request here
+        if(index +1 !== questions.length)  {
             if (clicked === currentQuestion.correct_answer) {
                 score++
             }
             currentQuestion= questions[index+1]
             updatedom()
+        } else{
+            // if send at end to results fetch request here
+            window.location.assign("leaderboard.html")
         }
       });
       const fetchQuestions = async () => {
