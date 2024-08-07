@@ -1,6 +1,7 @@
 const Leaderboard = require("../models/leaderBoard");
 
 console.log("CONTROLLER 1");
+
 /*const getStudentLeaderboard = async (req, res) => {
     console.log("CONTROLLER 1.6");
     try {
