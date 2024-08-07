@@ -17,6 +17,10 @@ class Leaderboard {
 
   static async getStudentLeaderboard() {
     console.log("MODEL 1");
+    const d = await db.query("select * from QuizResults");
+    console.log("res: ", d.rows);
+    const r = await db.query("select * from Users");
+    console.log("users: ", r.rows);
     const data = `
         SELECT U.first_name, U.last_name, SUM(QR.total_score) as total_score
         FROM Users U

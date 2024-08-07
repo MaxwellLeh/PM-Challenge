@@ -26,7 +26,7 @@ async function login(req, res) {
     const match = await bcrypt.compare(data.password, user.password);
 
     if (match) {
-      const payload = { username: user.username };
+      const payload = { username: user.username, userId: user.id };
       const sendToken = (err, token) => {
         if (err) {
           throw new Error("Error in token generation");
@@ -40,7 +40,7 @@ async function login(req, res) {
       jwt.sign(
         payload,
         process.env.SECRET_TOKEN,
-        { expiresIn: 3600 },
+        { expiresIn: "2 days" },
         sendToken
       );
     } else {
