@@ -1,6 +1,3 @@
-
-// c
-
 const db = require('../database/connect')
 
 require('dotenv').config()
