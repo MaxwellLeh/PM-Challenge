@@ -1,9 +1,12 @@
 const Leaderboard = require("../models/leaderBoard");
 
-
-const getStudentLeaderboard = async (req, res) => {
+console.log("CONTROLLER 1");
+/*const getStudentLeaderboard = async (req, res) => {
+    console.log("CONTROLLER 1.6");
     try {
+        console.log("CONTROLLER 2");
         const leaderboardData = await Leaderboard.getStudentLeaderboard();
+        console.log("CONTROLLER 3");
         const data = leaderboardData.map((entry, index) => ({
             name: entry.getFullName(),
             score: entry.total_score,
@@ -14,17 +17,20 @@ const getStudentLeaderboard = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Error fetching student leaderboard' });
     }
-};
+}; */
 
-/*const getStudentLeaderboard = async (req, res) => {
+const getStudentLeaderboard = async (req, res) => {
+    console.log("CONTROLLER 2");
     try {
         const data = await Leaderboard.getStudentLeaderboard(); 
+        console.log(data)
+    
         res.status(200).json({ role: 'Student', data });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error fetching student leaderboard' });
     }
-};*/
+};
 
 
 const getTeacherLeaderboard = async (req, res) => {

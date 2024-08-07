@@ -5,7 +5,6 @@ const app = require('./app')
 
 const port = process.env.PORT
 
-console.log("module check 1")
 
 
 app.listen(port, (req, res) => {

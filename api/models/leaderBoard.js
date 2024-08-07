@@ -1,5 +1,7 @@
 const db = require('../database/connect');
 
+console.log("MODEL 0.5")
+
 class Leaderboard {
     constructor({ first_name, last_name, total_score, role, advice }) {
         this.first_name = first_name;
@@ -8,21 +10,21 @@ class Leaderboard {
         this.role = role;
         this.advice = advice;
     }
-
     getFullName() {
+        console.log("MODEL 0.7")
         return `${this.first_name} ${this.last_name}`;
     }
 
     static async getStudentLeaderboard() {
-        const query = `
+       console.log("MODEL 1")
+        const data = `
         SELECT U.first_name, U.last_name, SUM(QR.total_score) as total_score
         FROM Users U
         JOIN QuizResults QR ON U.user_id = QR.student_id
         WHERE U.role = 'Student'
         GROUP BY U.user_id, U.first_name, U.last_name
-        ORDER BY SUM(QR.total_score) DESC
-    `;
-    const [results] = await db.execute(query);
+        ORDER BY SUM(QR.total_score) DESC`;
+    const [results] = await db.query(data);
     return results.map(row => new Leaderboard({ ...row, role: 'Student' }));
     }
 
