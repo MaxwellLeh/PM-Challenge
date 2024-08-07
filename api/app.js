@@ -12,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(logger);
+app.use("/", express.static("../client"));
 app.use("/users", usersRouter);
 app.use("/quiz-results", quizResultsRouter);
 app.use("/feedback", feedbackRouter);

@@ -1,6 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 .form-container {
     max-width: 600px;
@@ -24,11 +28,23 @@ select, textarea, input[type="radio"], input[type="text"] {
 button {
     padding: 10px 20px;
     border: none;
-    background-color: #007BFF;
+    background-color: #8a0408f9;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
 }
 button:hover {
-    background-color: #0056b3;
+    background-color: #710a0e;
+}
+.logo{
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100px;
+
+}   
+h2{
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
