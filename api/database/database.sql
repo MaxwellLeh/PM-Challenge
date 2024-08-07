@@ -18,12 +18,7 @@ CREATE TABLE IF NOT EXISTS Users (
 -- Countries Table
 CREATE TABLE IF NOT EXISTS Countries (
     country_id SERIAL PRIMARY KEY,
-    country_name VARCHAR(100) NOT NULL,
-    capital VARCHAR(100),
-    continent VARCHAR(50),
-    population INT,
-    area INT,
-    official_language VARCHAR(50)
+    country_name VARCHAR(30) NOT NULL
 );
  
 -- QuizResults
@@ -52,6 +47,17 @@ CREATE TABLE Feedback (
     additional_comments TEXT,
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+INSERT INTO Feedback (role, rating, comments, improvements, additional_comments)
+VALUES 
+    ('Student', 4, 'Great course, but could use more examples.', 'More hands-on exercises.', 'Looking forward to more content in the future.'),
+    ('Teacher', 5, 'Excellent material and well-organized.', 'None.', 'Keep up the good work!'),
+    ('Student', 3, 'The content was good, but the pace was a bit fast.', 'Slower pacing would help.', 'Overall, a solid course.'),
+    ('Teacher', 4, 'Good interaction with students.', 'More practical sessions.', 'Appreciate the efforts.'),
+    ('Teacher', 5, 'Well-structured and informative.', 'None.', 'A great experience.');
+
+ 
  
  
 -- Insert dummy users into the Users table
@@ -65,12 +71,12 @@ INSERT INTO Users (role, first_name, last_name, email, username, password) VALUE
  
  
 -- Insert the countries into the Countries table
-INSERT INTO Countries (country_name, capital, continent, population, area, official_language) VALUES
-('USA', 'Washington, D.C.', 'North America', 331002651, 9833517, 'English'),
-('UK', 'London', 'Western Europe', 67886011, 242495, 'English'),
-('India', 'New Delhi', 'Asia', 1380004385, 3287263, 'Hindi, English'),
-('Egypt', 'Cairo', 'Africa', 102334404, 1002450, 'Arabic'),
-('Germany', 'Berlin', 'Western Europe', 83783942, 357022, 'German');
+INSERT INTO Countries (country_name) VALUES
+('USA'),
+('UK'),
+('India'),
+('Egypt'),
+('Germany');
  
  
 -- Create the QuizQuestions table

@@ -1,10 +1,11 @@
-/*const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require("./models/userModel.js");
+const User = require("./models/userModel");
 
 async function register(req, res) {
   try {
+    console.log("response");
     const data = req.body;
 
     const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
@@ -57,4 +58,3 @@ module.exports = {
   register,
   login,
 };
-*/

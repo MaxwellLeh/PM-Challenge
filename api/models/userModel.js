@@ -1,8 +1,20 @@
-/*const db = require("../database/connect");
+const db = require("../database/connect");
 
 class User {
-  constructor({ user_id, username, password }) {
+  constructor({
+    user_id,
+    role,
+    first_name,
+    last_name,
+    email,
+    username,
+    password,
+  }) {
     this.id = user_id;
+    this.role = role;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
     this.username = username;
     this.password = password;
   }
@@ -27,16 +39,21 @@ class User {
   }
 
   static async create(data) {
-    const { username, password } = data;
+    console.log("response", response);
+    const { role, first_name, last_name, email, username, password } = data;
     let response = await db.query(
-      "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING user_id;",
-      [username, password]
+      "INSERT INTO users (role, first_name, last_name, email, username, password) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;",
+      [role, first_name, last_name, email, username, password]
     );
-    const newId = response.rows[0].user_id;
-    const newUser = await User.getOneById(newId);
-    return newUser;
+    console.log("response", response);
+    // const newId = response.rows[0].user_id;
+    // const newUser = await User.getOneById(newId);
+    if (response.rows.length !== 1) {
+      throw new Error(" Result entry already exists.");
+    }
+    return new User(response.rows[0]);
+    // return newUser;
   }
 }
 
 module.exports = User;
-*/
