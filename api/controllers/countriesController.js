@@ -66,7 +66,6 @@ class CountriesController {
   }
 }
 
-// Instantiate the controller
 const countriesController = new CountriesController();
 
 module.exports = countriesController;
