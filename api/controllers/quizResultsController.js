@@ -1,13 +1,13 @@
 console.log("In entries controller line 1")
-const Feedback= require('../models/Feedback')
-const User = require('../models/User')
+const QuizResults= require('../models/quizResultModel.js')
+//const User = require('../models/User')
 
 const index = async (req, res) =>{
 
     console.log("In index controller")
     try{
     console.log("try blcok in index")
-    const response = await Feedback.showAllFeedback()
+    const response = await QuizResults.showAllQuizResults()
     console.log("This is response in try block in index: ", response)
 
     res.status(200).json(response)
@@ -19,12 +19,12 @@ const index = async (req, res) =>{
 
 }
 
-const getFeedback = async (req, res) =>{
+const getResult = async (req, res) =>{
 
     try{
     const id = req.params.id
    
-    const response = await Feedback.showOneFeedback(id)
+    const response = await QuizResults.showOneQuizResult(id)
     console.log("This is response in try block in index: ", response)
 
     res.status(200).json(response)
@@ -37,13 +37,13 @@ const getFeedback = async (req, res) =>{
 }
 
 console.log('line 19 controller')
-const createFeedback = async (req, res) =>{
+const createResult = async (req, res) =>{
     try{
         
         const data = req.body
         console.log('The data in create in controller is: ', data)
     
-        const response = await Feedback.create(data)
+        const response = await QuizResults.create(data)
         console.log('The response in create in controller is: ', response)
         res.status(201).json(response)
     } catch (err) {
@@ -83,4 +83,4 @@ const createFeedback = async (req, res) =>{
 
 }*/
 
-module.exports = {createFeedback, getFeedback, index}
+module.exports = {createResult, getResult, index}

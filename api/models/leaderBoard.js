@@ -30,7 +30,7 @@ class Leaderboard {
 
     static async getTeacherLeaderboard() {
         const query = `
-            SELECT first_name, last_name, total_score, advice 
+            SELECT first_name, last_name, total_score, advice  
             FROM teachers 
             ORDER BY total_score DESC
         `;

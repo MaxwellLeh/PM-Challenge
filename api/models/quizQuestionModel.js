@@ -1,42 +1,44 @@
 
-/*
+// c
+
 const db = require('../database/connect')
-const User=require('./User')
+
 require('dotenv').config()
 console.log("In mdoel line 3")
-class Feedback{
+class quizQuestionModel{
     constructor(entryObject){
-        console.log("In line 6 constructor model")
-        this.feedback_id = entryObject.feedback_id
-        this.role = entryObject.role
-        this.comments=entryObject.comments
-        this.improvement =entryObject.improvement
-        this.additional_comments =entryObject.additional_comments
-        this.rating =entryObject.rating
-        this.submitted_at = entryObject.submitted_at
+        console.log("In line 10 constructor model Question ")
+        this.question_id = entryObject.question_id
+        this.country_id = entryObject.country_id
+        this.question_text=entryObject.question_text
+        this.correct_answer=entryObject.correct_answer
+        this.option_2 =entryObject.option_2
+        this.option_3 =entryObject.option_3
+        this.option_4 =entryObject.option_4
+        this.difficulty = entryObject.difficulty
     }
 
-    //static async showAll(){
-        //console.log("In show ALL in Model")
-        //console.log("In Showall function  line 14")
-        //const response = await db.query('SELECT * FROM diary_entries;')
-        //if (response.rows.length === 0){
-            //throw new Error("Table in database has no Entries")
-        //} 
-        //return response.rows.map(item => new Entry(item))
-    //}//
-
-    /*static async showOneUserEntry(data){
-        const username = data.username.toLowerCase()
-        const response = await db.query('SELECT * FROM users WHERE LOWER(username)=$1;', [username])
-        console.log("This is response in Model, in create: ", response)
-        if (response.rows.length !== 1){
-            throw new Error("User details are not in table i.e. cannot find username in users table.")
+    /*static async showAll(){
+    
+        const response = await db.query('SELECT * FROM diary_entries;')
+        if (response.rows.length === 0){
+            throw new Error("Table in database has no Entries")
         } 
-        return new User(response.rows[0])
+        return response.rows.map(item => new Entry(item))
     }*/
 
-    static async create(data){
+    static async showCountryQuestions(id){
+        console.log("In line 31 Model Country Questions")
+        const response = await db.query('SELECT * FROM quizquestions WHERE country_id=$1;',[id])
+        console.log("This is response in Model, in create: ", response)
+        if (response.rows.length === 0){
+            throw new Error("questions are not in table i.e. cannot find username in users table.")
+        } 
+
+        return response.rows.map(item => new quizQuestionModel(item))
+    }
+
+    /*static async create(data){
         console.log("Increate in model")
         const role = data.role
         const improvement = data.improvement
@@ -52,7 +54,7 @@ class Feedback{
         } 
         return new Feedback(response.rows[0])
     }
-
+    */
     /*async update(data){
        const id= this.id
         const description = data.description
@@ -74,4 +76,4 @@ class Feedback{
 
 }
 
-module.exports = Feedback
+module.exports = quizQuestionModel
