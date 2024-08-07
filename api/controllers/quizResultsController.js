@@ -42,7 +42,11 @@ const createResult = async (req, res) =>{
         
         const data = req.body
         console.log('The data in create in controller is: ', data)
-    
+        console.log("req.payload is the: ", req.body.payload)
+        console.log("req.token is the: ", req.token)
+        console.log("req.username is the: ", req.username)
+        console.log("req.jwts is the: ", req.jwt)
+        console.log("req.token is the: ", req.token)
         const response = await QuizResults.create(data)
         console.log('The response in create in controller is: ', response)
         res.status(201).json(response)

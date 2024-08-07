@@ -1,4 +1,4 @@
-const db = require('../database/connect');
+/*const db = require('../database/connect');
 
 console.log("MODEL 0.5")
 
@@ -39,4 +39,4 @@ class Leaderboard {
     }
 }
 
-module.exports = Leaderboard;
+module.exports = Leaderboard;*/
