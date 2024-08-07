@@ -146,3 +146,19 @@ nav {
 .highlight {
   fill: #247b30 !important;
 }
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.home-link {
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  color: #ff00008d;
+}
