@@ -1,4 +1,4 @@
-console.log("In entries controller line 1")
+/*console.log("In entries controller line 1")
 const quizQuestionModel= require('../models/quizQuestionModel')
 //const User = require('../models/User')
 

@@ -1,26 +1,41 @@
-const cors = require("cors");
+const express = require('express');
+const cors = require("cors")
+
+const logger = require("./middleware/logger")
+
+/*
 const usersRouter = require("./routers/usersRouter");
 const countriesRouter = require("./routers/countriesRouter");
 const quizResultsRouter = require("./routers/quizResultsRouter");
 const feedbackRouter = require("./routers/feedbackRouter");
 const quizQuestionsRouter = require("./routers/quizQuestionsRouter");
+*/
+
 const leaderboardRouter = require("./routers/leaderboardRouter");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+app.use(logger)
+
+/*
 app.use("/users", usersRouter);
 app.use("/", countriesRouter);
 app.use("/quiz-results", quizResultsRouter);
 app.use("/feedback", feedbackRouter);
 app.use("/quiz-questions", quizQuestionsRouter);
+*/
 
-app.use('/', leaderboardRouter)
+app.use("/", leaderboardRouter)
 
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    title: "Geography Game",
+    description: "Play our game!!"
+  })
+})
 
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
 module.exports = app;
