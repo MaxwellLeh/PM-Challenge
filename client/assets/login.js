@@ -6,6 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const options = {
     method: "POST",
     headers: {
+      authorization: localStorage.getItem("token"),
       Accept: "application/json",
       "Content-Type": "application/json",
     },
@@ -17,7 +18,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   const response = await fetch("http://localhost:3000/users/login", options);
   const data = await response.json();
-
   if (response.status == 200) {
     localStorage.setItem("token", data.token);
     window.location.assign("board.html");

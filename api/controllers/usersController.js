@@ -1,7 +1,7 @@
-/*const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require("./models/userModel.js");
+const User = require("../models/userModel");
 
 async function register(req, res) {
   try {
@@ -22,9 +22,7 @@ async function login(req, res) {
   const data = req.body;
   try {
     const user = await User.getOneByUsername(data.username);
-    if (!user) {
-      throw new Error("No user with this username");
-    }
+
     const match = await bcrypt.compare(data.password, user.password);
 
     if (match) {
@@ -57,4 +55,3 @@ module.exports = {
   register,
   login,
 };
-*/
