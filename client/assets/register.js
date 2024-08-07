@@ -2,14 +2,7 @@ document
   .getElementById("registerForm")
   .addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const form = new FormData(e.target);
-
-    const formData = {
-      fullname: form.get("fullname"),
-      email: form.get("email"),
-      password: form.get("password"),
-    };
 
     const options = {
       method: "POST",
@@ -18,8 +11,10 @@ document
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        fullname: form.get("fullname"),
+        first_name: form.get("firstName"),
+        last_name: form.get("lastName"),
         email: form.get("email"),
+        username: form.get("username"),
         password: form.get("password"),
       }),
     };

@@ -1,11 +1,10 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require("./models/userModel");
+const User = require("../models/userModel");
 
 async function register(req, res) {
   try {
-    console.log("response");
     const data = req.body;
 
     const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
@@ -23,9 +22,7 @@ async function login(req, res) {
   const data = req.body;
   try {
     const user = await User.getOneByUsername(data.username);
-    if (!user) {
-      throw new Error("No user with this username");
-    }
+
     const match = await bcrypt.compare(data.password, user.password);
 
     if (match) {
