@@ -1,13 +1,13 @@
 console.log("In entries controller line 1")
-const Feedback= require('../models/feedbackModel')
+const quizQuestionModel= require('../models/quizQuestionModel')
 //const User = require('../models/User')
 
-const index = async (req, res) =>{
+/*const index = async (req, res) =>{
 
     console.log("In index controller")
     try{
     console.log("try blcok in index")
-    const response = await Feedback.showAllFeedback()
+    const response = await Entry.showAll()
     console.log("This is response in try block in index: ", response)
 
     res.status(200).json(response)
@@ -17,16 +17,16 @@ const index = async (req, res) =>{
     }
 
 
-}
-
-const getFeedback = async (req, res) =>{
-
+}*/
+const getCountryQuestions= async (req, res) =>{
+    console.log("In line 22 Country")
     try{
     const id = req.params.id
-   
-    const response = await Feedback.showOneFeedback(id)
+    
+    
+    const response = await quizQuestionModel.showCountryQuestions(id)
     console.log("This is response in try block in index: ", response)
-
+    console.log("This is response in line 28 Quizquestion: ", response)
     res.status(200).json(response)
     } catch (err) {
         
@@ -36,7 +36,7 @@ const getFeedback = async (req, res) =>{
 
 }
 
-console.log('line 19 controller')
+/*console.log('line 19 controller')
 const createFeedback = async (req, res) =>{
     try{
         
@@ -51,7 +51,7 @@ const createFeedback = async (req, res) =>{
     }
 
 
-}
+}*/
 
 
 /*const update = async (req, res) =>{
@@ -83,4 +83,4 @@ const createFeedback = async (req, res) =>{
 
 }*/
 
-module.exports = {createFeedback, getFeedback, index}
+module.exports = {getCountryQuestions}
