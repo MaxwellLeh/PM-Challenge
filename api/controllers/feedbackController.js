@@ -1,6 +1,6 @@
 console.log("In entries controller line 1")
-const Feedback= require('../models/feedbackModel')
-//const User = require('../models/User')
+const Feedback= require('../models/Feedback')
+const User = require('../models/User')
 
 const index = async (req, res) =>{
 

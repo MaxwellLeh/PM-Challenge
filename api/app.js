@@ -1,7 +1,3 @@
-const express = require("express");
-
-
-
 const cors = require("cors");
 const usersRouter = require("./routers/usersRouter");
 const countriesRouter = require("./routers/countriesRouter");
@@ -28,4 +24,3 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 module.exports = app;
-
