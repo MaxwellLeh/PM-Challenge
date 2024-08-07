@@ -24,8 +24,8 @@ class Leaderboard {
         WHERE U.role = 'Student'
         GROUP BY U.user_id, U.first_name, U.last_name
         ORDER BY SUM(QR.total_score) DESC`;
-    const [results] = await db.query(data);
-    return results.map(row => new Leaderboard({ ...row, role: 'Student' }));
+    const results = await db.query(data);
+    return results.rows.map(row => new Leaderboard({ ...row, role: 'Student' }));
     }
 
     static async getTeacherLeaderboard() {
@@ -34,8 +34,8 @@ class Leaderboard {
             FROM teachers 
             ORDER BY total_score DESC
         `;
-        const [results] = await db.execute(query);
-        return results.map(row => new Leaderboard({ ...row, role: 'Teacher' }));
+        const results = await db.query(query);
+        return results.rows.map(row => new Leaderboard({ ...row, role: 'Teacher' }));
     }
 }
 

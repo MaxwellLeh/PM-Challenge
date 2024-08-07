@@ -1,4 +1,4 @@
-/*const express = require("express");
+const express = require("express");
 const { createResult, getResult, index} = require("../controllers/quizResultsController");
 
 const router = express.Router();

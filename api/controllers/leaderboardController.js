@@ -20,8 +20,9 @@ console.log("CONTROLLER 1");
     }
 }; */
 
+
+
 const getStudentLeaderboard = async (req, res) => {
-    console.log("CONTROLLER 2");
     try {
         const data = await Leaderboard.getStudentLeaderboard(); 
         console.log(data)
@@ -35,6 +36,8 @@ const getStudentLeaderboard = async (req, res) => {
 
 
 const getTeacherLeaderboard = async (req, res) => {
+    console.log("banana");
+
     try {
         const leaderboardData = await Leaderboard.getTeacherLeaderboard();
         const data = leaderboardData.map(entry => ({

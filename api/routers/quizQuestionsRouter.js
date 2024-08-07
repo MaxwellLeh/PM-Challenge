@@ -1,4 +1,4 @@
-/*
+
 const express = require('express')
 const quizQuestionController= require('../controllers/quizQuestionController.js')
 const quizQuestionsRouter = express.Router()

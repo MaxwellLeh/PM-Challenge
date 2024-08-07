@@ -1,8 +1,8 @@
-/*console.log("In entries controller line 1")
+console.log("In entries controller line 1")
 const quizQuestionModel= require('../models/quizQuestionModel')
 //const User = require('../models/User')
 
-/*const index = async (req, res) =>{
+const index = async (req, res) =>{
 
     console.log("In index controller")
     try{
@@ -17,7 +17,8 @@ const quizQuestionModel= require('../models/quizQuestionModel')
     }
 
 
-}*/
+}
+
 const getCountryQuestions= async (req, res) =>{
     console.log("In line 22 Country")
     try{
