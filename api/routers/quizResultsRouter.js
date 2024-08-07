@@ -1,9 +1,13 @@
 const express = require("express");
-const { createResult, getResult, index} = require("../controllers/quizResultsController");
+const {
+  createResult,
+  getResult,
+  index,
+} = require("../controllers/quizResultsController");
 
-const router = express.Router();
-router.get("/", index);
-router.get("/:id", getResult);
-router.post("/", createResult);
+const quizResultsRouter = express.Router();
+quizResultsRouter.get("/", index);
+quizResultsRouter.get("/:id", getResult);
+quizResultsRouter.post("/", createResult);
 
-module.exports = router
+module.exports = quizResultsRouter;
