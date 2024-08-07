@@ -13,7 +13,6 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 app.use("/users", usersRouter);
-//app.use("/", countriesRouter);
 app.use("/quiz-results", quizResultsRouter);
 app.use("/feedback", feedbackRouter);
 app.use("/quiz-questions", quizQuestionsRouter);
