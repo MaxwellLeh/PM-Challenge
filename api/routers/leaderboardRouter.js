@@ -8,6 +8,6 @@ const {
 const router = express.Router();
 
 router.get("/students", getStudentLeaderboard);
-router.get("/teachers", getTeacherLeaderboard);
+//router.get("/teachers", getTeacherLeaderboard);
 
 module.exports = router;
