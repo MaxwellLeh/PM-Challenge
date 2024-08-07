@@ -4,17 +4,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
+body,html{
+  height:100%
+}
 .container {
   background-color: white;
+  margin: 80px auto;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; 
 }
 
 h2 {
@@ -27,7 +31,8 @@ form {
 }
 
 label {
-  margin: 5px 0;
+  margin: 5px;
+  color: #333;
 }
 
 input {
@@ -35,11 +40,12 @@ input {
   margin: 5px 0 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 button {
-  padding: 10px;
-  background-color: #28a745;
+  padding: 8px;
+  background-color: #a72833;
   color: white;
   border: none;
   border-radius: 4px;
@@ -47,18 +53,24 @@ button {
 }
 
 button:hover {
-  background-color: #218838;
+  background-color: #882124;
 }
 
 p {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 a {
-  color: #007bff;
+  color: #882124;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 150px;
 }

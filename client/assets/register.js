@@ -5,6 +5,12 @@ document
 
     const form = new FormData(e.target);
 
+    const formData = {
+      fullname: form.get("fullname"),
+      email: form.get("email"),
+      password: form.get("password"),
+    };
+
     const options = {
       method: "POST",
       headers: {
@@ -12,7 +18,8 @@ document
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: form.get("username"),
+        fullname: form.get("fullname"),
+        email: form.get("email"),
         password: form.get("password"),
       }),
     };
@@ -26,6 +33,6 @@ document
     if (response.status == 201) {
       window.location.assign("login.html");
     } else {
-      alert(data.error);
+      alert(data.error || "Registration failed. Please try again.");
     }
   });
