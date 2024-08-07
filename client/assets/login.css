@@ -104,3 +104,19 @@ a:hover {
   margin: 0 auto 20px auto;
   max-width: 150px;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+nav a:hover {
+  color: #8d070e;
+  transform: scale(1.1);
+}
+
+.nav-left{
+  display: flex;
+}
