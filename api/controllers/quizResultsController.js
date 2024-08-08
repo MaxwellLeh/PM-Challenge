@@ -26,9 +26,9 @@ const getResult = async (req, res) => {
 const createResult = async (req, res) => {
   try {
     const token = req.headers.authorization;
-    console.log(token);
+    //console.log(token);
     var decoded = jwt.verify(token, process.env.SECRET_TOKEN);
-    console.log(token, decoded);
+    //console.log(token, decoded);
     const data = req.body;
     const d = {
       student_id: decoded.userId,

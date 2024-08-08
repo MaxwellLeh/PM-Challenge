@@ -33,10 +33,7 @@ const saveResults = async (score, country_id, rank) => {
       rank: rank,
     }),
   };
-  const response = await fetch(
-    "http://127.0.0.1:3000/quiz-results/save",
-    options
-  );
+  const response = await fetch("http://127.0.0.1:3000/quiz-results/", options);
   console.log("save result ", response);
   return response.ok;
 };
