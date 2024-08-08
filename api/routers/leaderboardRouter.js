@@ -2,7 +2,7 @@ const express = require("express");
 
 const {
   getStudentLeaderboard,
-  getTeacherLeaderboard,
+  // getTeacherLeaderboard,
 } = require("../controllers/leaderboardController");
 
 const router = express.Router();
