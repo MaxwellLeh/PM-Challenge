@@ -1,70 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="assets/stylesLeader.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/stylesLeader.css" />
+    <script src="./assets/leaderboard.js" defer></script>
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="nav-left">
-                <img src="assets/logo.jpg" alt="Logo" class="logo">
-                <a href="board.html" class="leaderboard">WORLD MAP</a>
-            </div>
-            <h1 class="header-title">LEADERBOARD</h1>
-            <button id="logout-button" class="logout-button">Logout</button>
-        </nav>
+      <nav>
+        <div class="nav-left">
+          <img src="assets/logo.jpg" alt="Logo" class="logo" />
+          <a href="board.html" class="leaderboard">WORLD MAP</a>
+        </div>
+        <h1 class="header-title">LEADERBOARD</h1>
+        <button id="logout-button" class="logout-button">Logout</button>
+      </nav>
     </header>
 
     <div class="background-strip left"></div>
     <div class="background-strip right"></div>
 
     <main>
-        <h1>Leaderboard</h1>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Student</th>
-                        <th>Rank</th>
-                        <th>Total Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Pape Matar Sarr</td>
-                        <td>Prime Minister</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>Sarah Sarahson</td>
-                        <td>Deputy Prime Minister</td>
-                        <td>190</td>
-                    </tr>
-                    <tr>
-                        <td>Jimmy Smith</td>
-                        <td>Civil Servant</td>
-                        <td>80</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie McJamerson</td>
-                        <td>Assistant</td>
-                        <td>70</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="feedback-link">
-            <a href="feedback/feedback-form.html" class="feedback-button">Provide Feedback</a>
-        </div>
+      <h1>Leaderboard</h1>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Rank</th>
+              <th>Total Score</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody"></tbody>
+        </table>
+      </div>
+      <div class="feedback-link">
+        <a href="feedback/feedback-form.html" class="feedback-button"
+          >Provide Feedback</a
+        >
+      </div>
     </main>
 
     <script>
-        document.getElementById('logout-button').addEventListener('click', function() {
-            window.location.href = 'login.html';
+      document
+        .getElementById("logout-button")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
         });
     </script>
-</body>
+  </body>
 </html>

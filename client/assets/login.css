@@ -4,7 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 200vh;
   margin: 0;
 }
 
@@ -14,12 +14,12 @@ body, html {
 
 header {
   width: 100%;
-  background-color: #f5f5f5;
-  padding: 10px 20px;
+  background-color: transparent;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,7 +43,7 @@ nav a:hover {
 
 .container {
   background-color: white;
-  margin: 120px auto 20px; /* Adjust margin-top to account for fixed header */
+  margin-top: 50px; /* Adjust margin-top to account for fixed header */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
@@ -119,4 +119,15 @@ nav a:hover {
 
 .nav-left{
   display: flex;
+}
+
+body.login-page .container {
+  max-width: 350px; /* Custom width for login page */
+  margin-top: 100px ; /* Adjust margin for login page */
+}
+
+/* Specific styling for register page */
+body.register-page .container {
+  max-width: 500px; /* Custom width for register page */
+  margin: 120px ; /* Adjust margin for register page */
 }
