@@ -19,10 +19,7 @@ document
       }),
     };
 
-    const response = await fetch(
-      "https://pm-challenge-backend.onrender.com/users/register",
-      options
-    );
+    const response = await fetch("/users/register", options);
     const data = await response.json();
 
     if (response.status == 201) {

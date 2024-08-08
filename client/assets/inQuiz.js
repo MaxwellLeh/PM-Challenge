@@ -16,7 +16,7 @@ form.addEventListener("submit", async function (e) {
     currentQuestion = questions[index + 1];
     updatedom();
   } else {
-    await saveResults(score, 3, Math.floor(score / questions.length)); 
+    await saveResults(score, 3, Math.floor(score / questions.length));
     window.location.assign("leaderboard.html");
   }
 });
@@ -35,13 +35,13 @@ const saveResults = async (score, country_id, rank) => {
       rank: rank,
     }),
   };
-  const response = await fetch("http://localhost:3000/quiz-results/", options);
+  const response = await fetch("/quiz-results/", options);
   console.log("save result ", response);
   return response.ok;
 };
 
 const fetchQuestions = async () => {
-  const response = await fetch("http://localhost:3000/quiz-questions/3"); 
+  const response = await fetch("/quiz-questions/3");
 
   if (!response.ok) {
     console.log("err");

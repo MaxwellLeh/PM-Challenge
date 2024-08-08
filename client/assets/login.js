@@ -16,10 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     }),
   };
 
-  const response = await fetch(
-    "https://pm-challenge-backend.onrender.com/users/login",
-    options
-  );
+  const response = await fetch("/users/login", options);
   const data = await response.json();
   if (response.status == 200) {
     localStorage.setItem("token", data.token);

@@ -34,18 +34,13 @@ const saveResults = async (score, country_id, rank) => {
       rank: rank,
     }),
   };
-  const response = await fetch(
-    "https://pm-challenge-backend.onrender.com/quiz-results/",
-    options
-  );
+  const response = await fetch("/quiz-results/", options);
   console.log("save result ", response);
   return response.ok;
 };
 
 const fetchQuestions = async () => {
-  const response = await fetch(
-    "https://pm-challenge-backend.onrender.com/quiz-questions/2"
-  );
+  const response = await fetch("/quiz-questions/2");
 
   if (!response.ok) {
     console.log("err");

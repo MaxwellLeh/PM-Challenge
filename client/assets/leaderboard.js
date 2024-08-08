@@ -8,10 +8,7 @@ async function load() {
     },
   };
   console.log("loading leaderboard");
-  const response = await fetch(
-    "https://pm-challenge-backend.onrender.com/leaderboard/students",
-    options
-  );
+  const response = await fetch("/leaderboard/students", options);
   const resp = await response.json();
   console.log({ resp });
   resp.data.forEach((student) => {
@@ -30,6 +27,8 @@ async function load() {
       tdRank.textContent = "Governor";
     } else if (student.rank == 5) {
       tdRank.textContent = "Mayor";
+    } else {
+      tdRank.textContent = "Officer";
     }
     // tdRank.textContent = student.rank;
     const tdScore = document.createElement("td");
