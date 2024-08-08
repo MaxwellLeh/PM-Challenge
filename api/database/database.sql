@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS QuizQuestions;
 DROP TABLE IF EXISTS Countries;
 DROP TABLE IF EXISTS Users;
  
-CREATE TABLE IF NOT EXISTS Users (
+CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
     role VARCHAR(50) CHECK (role IN ('Student', 'Teacher')) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS Users (
 );
  
 -- Countries Table
-CREATE TABLE IF NOT EXISTS Countries (
+CREATE TABLE Countries (
     country_id SERIAL PRIMARY KEY,
     country_name VARCHAR(30) NOT NULL
 );
  
 -- QuizResults
-CREATE TABLE IF NOT EXISTS QuizResults (
+CREATE TABLE QuizResults (
     result_id SERIAL PRIMARY KEY,
     student_id INT,
     country_id INT,
