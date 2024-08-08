@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS QuizQuestions;
 DROP TABLE IF EXISTS Countries;
 DROP TABLE IF EXISTS Users;
  
-CREATE TABLE IF NOT EXISTS Users (
+CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
     role VARCHAR(50) CHECK (role IN ('Student', 'Teacher')) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -16,19 +16,20 @@ CREATE TABLE IF NOT EXISTS Users (
 );
  
 -- Countries Table
-CREATE TABLE IF NOT EXISTS Countries (
+CREATE TABLE Countries (
     country_id SERIAL PRIMARY KEY,
     country_name VARCHAR(30) NOT NULL
 );
  
 -- QuizResults
-CREATE TABLE IF NOT EXISTS QuizResults (
+CREATE TABLE QuizResults (
     result_id SERIAL PRIMARY KEY,
     student_id INT,
     country_id INT,
     student_answer TEXT NOT NULL,
     total_score INT NOT NULL,
-    rank VARCHAR(50),
+    rank INT,
+    designation VARCHAR(30),
     time_taken TIME,
     FOREIGN KEY (student_id) REFERENCES Users(user_id)
         ON DELETE CASCADE,
@@ -80,7 +81,7 @@ INSERT INTO Countries (country_name) VALUES
  
  
 -- Create the QuizQuestions table
-CREATE TABLE IF NOT EXISTS QuizQuestions (
+CREATE TABLE QuizQuestions (
     question_id SERIAL PRIMARY KEY,
     country_id INT REFERENCES Countries(country_id) ON DELETE CASCADE,
     question_text TEXT NOT NULL,
@@ -224,8 +225,8 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
  
  
 -- Insert data into QuizResults table
-INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, time_taken) VALUES
-(1, 1, 'Washington, D.C.', 10, 1, '00:05:23'),
-(1, 1, 'Missouri River', 8, 2, '00:08:15'),
-(2, 2, 'London', 10, 1, '00:06:30'),
-(2, 2, 'Wales', 9, 2, '00:07:20');
+INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, designation, time_taken) VALUES
+(1, 1, 'Washington, D.C.', 105, 1,'Prime Minister', '00:05:23'),
+(1, 1, 'Missouri River', 20, 5,'Civil Servant', '00:08:15'),
+(2, 2, 'London', 84, 4,'Minister of State', '00:06:30'),
+(2, 2, 'Wales', 96, 2,'Deputy Prime Minister', '00:07:20');

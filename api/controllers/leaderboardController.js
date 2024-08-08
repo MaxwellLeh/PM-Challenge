@@ -12,6 +12,8 @@ const getStudentLeaderboard = async (req, res) => {
       name: entry.getFullName(),
       score: entry.total_score,
       rank: index + 1,
+      //designation: entry.getDesignationById(user_id),
+      //rank: entry.assignRank(total_score),
     }));
     res.json({ userRole: "Student", data });
   } catch (error) {
