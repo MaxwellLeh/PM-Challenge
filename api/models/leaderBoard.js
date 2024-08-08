@@ -48,7 +48,7 @@ class Leaderboard {
 
   static async getStudentLeaderboard() {
     const data = `
-        SELECT U.first_name, U.last_name, QR.designation, SUM(QR.total_score) as total_score
+        SELECT distinct(U.user_id), U.first_name, U.last_name, SUM(QR.total_score) as total_score
         FROM Users U
         JOIN QuizResults QR ON U.user_id = QR.student_id
         WHERE U.role = 'Student'
@@ -58,8 +58,8 @@ class Leaderboard {
     const results = await db.query(data);
 
     return results.rows.map((row) => {
-      const rank = Leaderboard.assignRank(row.total_score);
-      return new Leaderboard({ ...row, rank, role: "Student" });
+      console.log(row);
+      return new Leaderboard({ ...row, role: "Student" });
     });
   }
 }
