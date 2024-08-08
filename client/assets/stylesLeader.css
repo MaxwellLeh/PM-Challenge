@@ -13,7 +13,7 @@
 body {
     font-family: sans-serif;
     margin: 0;
-    background-image: url(https://img.freepik.com/free-vector/flat-design-crown-background_23-2150965669.jpg?t=st=1722971060~exp=1722974660~hmac=96376dda0e4656b3ab0ed2802b8010c6b88645953543777dff4ec7628fe72598&w=1800);
+    background-image: url(LeaderBackground.png); 
     background-size: cover;
     background-position: center;
     color: black;
@@ -23,6 +23,7 @@ body {
     position: relative;
     overflow-x: hidden;
 }
+
 
 header {
     background-color: #ffffff;
@@ -97,24 +98,7 @@ nav a:hover {
     background-color: #cc0000;
 }
 
-.background-strip {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 20vw;
-    background-image: url(https://img.freepik.com/free-vector/flat-design-crown-background_23-2150965669.jpg?t=st=1722971060~exp=1722974660~hmac=96376dda0e4656b3ab0ed2802b8010c6b88645953543777dff4ec7628fe72598&w=1800);
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
 
-.background-strip.left {
-    left: 0;
-}
-
-.background-strip.right {
-    right: 0;
-}
 
 h1 {
     text-align: center;

@@ -1,8 +1,10 @@
-DROP TABLE IF EXISTS QuizResults;
+
+
 DROP TABLE IF EXISTS Feedback;
 DROP TABLE IF EXISTS QuizQuestions;
 DROP TABLE IF EXISTS Countries;
 DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS QuizResults;
  
 CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
@@ -19,6 +21,12 @@ CREATE TABLE Users (
 CREATE TABLE Countries (
     country_id SERIAL PRIMARY KEY,
     country_name VARCHAR(30) NOT NULL
+    country_name VARCHAR(100) NOT NULL,
+    capital VARCHAR(100),
+    continent VARCHAR(50),
+    population INT,
+    area INT,
+    official_language VARCHAR(50)
 );
  
 -- QuizResults
@@ -29,7 +37,6 @@ CREATE TABLE QuizResults (
     student_answer TEXT NOT NULL,
     total_score INT NOT NULL,
     rank INT,
-    designation VARCHAR(30),
     time_taken TIME,
     FOREIGN KEY (student_id) REFERENCES Users(user_id)
         ON DELETE CASCADE,
@@ -49,37 +56,6 @@ CREATE TABLE Feedback (
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-INSERT INTO Feedback (role, rating, comments, improvements, additional_comments)
-VALUES 
-    ('Student', 4, 'Great course, but could use more examples.', 'More hands-on exercises.', 'Looking forward to more content in the future.'),
-    ('Teacher', 5, 'Excellent material and well-organized.', 'None.', 'Keep up the good work!'),
-    ('Student', 3, 'The content was good, but the pace was a bit fast.', 'Slower pacing would help.', 'Overall, a solid course.'),
-    ('Teacher', 4, 'Good interaction with students.', 'More practical sessions.', 'Appreciate the efforts.'),
-    ('Teacher', 5, 'Well-structured and informative.', 'None.', 'A great experience.');
-
- 
- 
- 
--- Insert dummy users into the Users table
-INSERT INTO Users (role, first_name, last_name, email, username, password) VALUES
-('Student', 'Alice', 'Smith', 'alice.smith@example.com', 'alice_smith', 'password123'),
-('Student', 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson', 'password456'),
-('Student', 'Charlie', 'Williams', 'charlie.williams@example.com', 'charlie_williams', 'password789'),
-('Teacher', 'David', 'Brown', 'david.brown@example.com', 'david_brown', 'teacherpass1'),
-('Teacher', 'Eva', 'Jones', 'eva.jones@example.com', 'eva_jones', 'teacherpass2'),
-('Teacher', 'Frank', 'Garcia', 'frank.garcia@example.com', 'frank_garcia', 'teacherpass3');
- 
- 
--- Insert the countries into the Countries table
-INSERT INTO Countries (country_name) VALUES
-('USA'),
-('UK'),
-('India'),
-('Egypt'),
-('Germany');
- 
- 
 -- Create the QuizQuestions table
 CREATE TABLE QuizQuestions (
     question_id SERIAL PRIMARY KEY,
@@ -91,8 +67,32 @@ CREATE TABLE QuizQuestions (
     option_4 TEXT NOT NULL,
     difficulty VARCHAR(10) -- 'easy', 'medium', 'hard'
 );
- 
- 
+
+-- Insert dummy users into the Users table
+INSERT INTO Users (user_id, role, first_name, last_name, email, username, password) VALUES
+(1,'Student', 'Alice', 'Smith', 'alice.smith@example.com', 'alice_smith', 'password123'),
+(2,'Student', 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson', 'password456'),
+(3, 'Student', 'Charlie', 'Williams', 'charlie.williams@example.com', 'charlie_williams', 'password789'),
+(4, 'Teacher', 'David', 'Brown', 'david.brown@example.com', 'david_brown', 'teacherpass1'),
+(4, 'Teacher', 'Eva', 'Jones', 'eva.jones@example.com', 'eva_jones', 'teacherpass2'),
+(4, 'Teacher', 'Frank', 'Garcia', 'frank.garcia@example.com', 'frank_garcia', 'teacherpass3');
+
+
+INSERT INTO Feedback (role, rating, comments, improvements, additional_comments)
+VALUES 
+    ('Student', 4, 'Great course, but could use more examples.', 'More hands-on exercises.', 'Looking forward to more content in the future.'),
+    ('Teacher', 5, 'Excellent material and well-organized.', 'None.', 'Keep up the good work!'),
+    ('Student', 3, 'The content was good, but the pace was a bit fast.', 'Slower pacing would help.', 'Overall, a solid course.'),
+    ('Teacher', 4, 'Good interaction with students.', 'More practical sessions.', 'Appreciate the efforts.'),
+    ('Teacher', 5, 'Well-structured and informative.', 'None.', 'A great experience.');
+
+INSERT INTO Countries (country_name) VALUES
+('USA'),
+('UK'),
+('India'),
+('Egypt'),
+('Germany');
+
 -- Questions for USA
 INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (1, 'What is the capital of the USA?', 'Washington, D.C.', 'New York City', 'Los Angeles', 'Chicago', 'easy'),
@@ -154,7 +154,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (3, 'What is the national language of India?', 'Hindi', 'English', 'Bengali', 'Tamil', 'easy'),
 (3, 'Which city is known as the "Pink City" in India?', 'Jaipur', 'Delhi', 'Mumbai', 'Bangalore', 'easy'),
 (3, 'Which Indian leader is known for his role in the Indian independence movement?', 'Mahatma Gandhi', 'Jawaharlal Nehru', 'Subhas Chandra Bose', 'Bhagat Singh', 'easy'),
- 
+
 (3, 'Which Indian state is the largest by area?', 'Rajasthan', 'Uttar Pradesh', 'Maharashtra', 'Tamil Nadu', 'medium'),
 (3, 'Which Indian emperor is known for his contributions to art and architecture?', 'Ashoka', 'Akbar', 'Shivaji', 'Aurangzeb', 'medium'),
 (3, 'What is the largest desert in India?', 'Thar Desert', 'Rann of Kutch', 'Ladakh Desert', 'Great Indian Desert', 'medium'),
@@ -162,7 +162,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (3, 'Which Indian city is known as the "Silicon Valley of India"?', 'Bangalore', 'Hyderabad', 'Chennai', 'Pune', 'medium'),
 (3, 'What is the national sport of India?', 'Hockey', 'Cricket', 'Football', 'Badminton', 'medium'),
 (3, 'Which Mughal emperor built the Taj Mahal?', 'Shah Jahan', 'Akbar', 'Babur', 'Aurangzeb', 'medium'),
- 
+
 (3, 'Who is known as the "Father of the Indian Nation"?', 'Mahatma Gandhi', 'Jawaharlal Nehru', 'Subhas Chandra Bose', 'Sardar Patel', 'hard'),
 (3, 'Which Indian Prime Minister declared the Emergency in 1975?', 'Indira Gandhi', 'Rajiv Gandhi', 'Jawaharlal Nehru', 'Atal Bihari Vajpayee', 'hard'),
 (3, 'Which Indian scientist won the Nobel Prize for Physics in 1930?', 'C.V. Raman', 'Homi Bhabha', 'Satyendra Nath Bose', 'Dr. A.P.J. Abdul Kalam', 'hard'),
@@ -170,7 +170,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (3, 'What is the name of the Indian parliament building?', 'Rashtrapati Bhavan', 'Lok Sabha', 'Rajya Sabha', 'Parliament House', 'hard'),
 (3, 'Who wrote the Indian national anthem "Jana Gana Mana"?', 'Rabindranath Tagore', 'Bankim Chandra Chattopadhyay', 'Subhas Chandra Bose', 'Kavi Pradeep', 'hard'),
 (3, 'Which Indian city is known as the "City of Joy"?', 'Kolkata', 'Mumbai', 'Delhi', 'Chennai', 'hard');
- 
+
 -- Questions for Egypt
 INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (4, 'What is the capital of Egypt?', 'Cairo', 'Alexandria', 'Giza', 'Luxor', 'easy'),
@@ -180,7 +180,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (4, 'What is the primary language spoken in Egypt?', 'Arabic', 'English', 'French', 'Spanish', 'easy'),
 (4, 'Which city is known for its ancient pyramids and the Sphinx?', 'Giza', 'Cairo', 'Luxor', 'Aswan', 'easy'),
 (4, 'Which Egyptian god is associated with the sun?', 'Ra', 'Osiris', 'Horus', 'Anubis', 'easy'),
- 
+
 (4, 'Which Egyptian leader was known for his peace treaty with Israel?', 'Anwar Sadat', 'Gamal Abdel Nasser', 'Hosni Mubarak', 'Mohammed Morsi', 'medium'),
 (4, 'In which period did the Ptolemaic Dynasty rule Egypt?', 'Hellenistic Period', 'Old Kingdom', 'Middle Kingdom', 'New Kingdom', 'medium'),
 (4, 'What is the name of the famous ancient library located in Alexandria?', 'Library of Alexandria', 'Library of Ashurbanipal', 'Library of Pergamum', 'Library of Ephesus', 'medium'),
@@ -188,7 +188,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (4, 'What is the main type of economy in Egypt?', 'Agricultural', 'Industrial', 'Service', 'Technology', 'medium'),
 (4, 'Which Egyptian goddess was depicted as a lioness?', 'Sekhmet', 'Isis', 'Bastet', 'Hathor', 'medium'),
 (4, 'Which event marked the beginning of modern Egypt’s history?', 'Egyptian Revolution of 1952', 'Suez Crisis', 'Napoleon’s Campaign in Egypt', 'British Occupation of Egypt', 'medium'),
- 
+
 (4, 'Which Pharaoh is known for the discovery of his nearly intact tomb in 1922?', 'Tutankhamun', 'Ramses II', 'Akhenaten', 'Seti I', 'hard'),
 (4, 'Which Egyptian leader was known for his role in the Egyptian Revolution of 2011?', 'Hosni Mubarak', 'Mohammed Morsi', 'Anwar Sadat', 'Gamal Abdel Nasser', 'hard'),
 (4, 'Which city is considered the center of Egypt’s ancient civilization?', 'Thebes', 'Cairo', 'Alexandria', 'Giza', 'hard'),
@@ -196,7 +196,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (4, 'Which Egyptian monument is known for its unique half-man, half-lion sculpture?', 'The Sphinx', 'The Colossus of Rhodes', 'The Statue of Zeus', 'The Colossus of Memnon', 'hard'),
 (4, 'What ancient Egyptian writing system used pictograms?', 'Hieroglyphics', 'Cuneiform', 'Runes', 'Latin Script', 'hard'),
 (4, 'Which Egyptian deity was considered the god of the underworld?', 'Osiris', 'Ra', 'Horus', 'Anubis', 'hard');
- 
+
 -- Questions for Germany
 INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (5, 'What is the capital of Germany?', 'Berlin', 'Munich', 'Frankfurt', 'Hamburg', 'easy'),
@@ -206,7 +206,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (5, 'Which German city is famous for its Oktoberfest?', 'Munich', 'Berlin', 'Hamburg', 'Frankfurt', 'easy'),
 (5, 'Which historical event led to the division of Germany into East and West?', 'Cold War', 'World War I', 'World War II', 'German Revolution', 'easy'),
 (5, 'Who was the leader of Nazi Germany during World War II?', 'Adolf Hitler', 'Wilhelm II', 'Otto von Bismarck', 'Paul von Hindenburg', 'easy'),
- 
+
 (5, 'Which German physicist developed the theory of relativity?', 'Albert Einstein', 'Max Planck', 'Werner Heisenberg', 'Niels Bohr', 'medium'),
 (5, 'Which German city is known for its Brandenburg Gate?', 'Berlin', 'Cologne', 'Dresden', 'Leipzig', 'medium'),
 (5, 'In which year did the Berlin Wall fall?', '1989', '1961', '1975', '1991', 'medium'),
@@ -214,7 +214,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (5, 'Which famous German philosopher wrote "Thus Spoke Zarathustra"?', 'Friedrich Nietzsche', 'Immanuel Kant', 'Georg Wilhelm Friedrich Hegel', 'Karl Marx', 'medium'),
 (5, 'What was the main cause of the German economic crisis in the 1920s?', 'Hyperinflation', 'Stock Market Crash', 'Great Depression', 'World War I', 'medium'),
 (5, 'Which German city is known for its medieval architecture and its Old Town?', 'Nuremberg', 'Hamburg', 'Munich', 'Berlin', 'medium'),
- 
+
 (5, 'Which German leader was known for his policy of appeasement in the 1930s?', 'Adolf Hitler', 'Kaiser Wilhelm II', 'Otto von Bismarck', 'Paul von Hindenburg', 'hard'),
 (5, 'Which German physicist was awarded the Nobel Prize for his work on quantum mechanics?', 'Werner Heisenberg', 'Albert Einstein', 'Max Planck', 'Erwin Schrödinger', 'hard'),
 (5, 'Which city was the capital of West Germany during the Cold War?', 'Bonn', 'Berlin', 'Frankfurt', 'Hamburg', 'hard'),
@@ -222,11 +222,12 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (5, 'Which German film director is known for his work on "Metropolis" and "M"?', 'Fritz Lang', 'Werner Herzog', 'Rainer Werner Fassbinder', 'Wim Wenders', 'hard'),
 (5, 'What is the name of the German national football team’s stadium?', 'Allianz Arena', 'Olympiastadion', 'Volkswagen Arena', 'Signal Iduna Park', 'hard'),
 (5, 'Which German composer is known for his opera "The Ring Cycle"?', 'Richard Wagner', 'Johann Sebastian Bach', 'Ludwig van Beethoven', 'Wolfgang Amadeus Mozart', 'hard');
- 
- 
+
 -- Insert data into QuizResults table
-INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, designation, time_taken) VALUES
-(1, 1, 'Washington, D.C.', 105, 1,'Prime Minister', '00:05:23'),
-(1, 1, 'Missouri River', 20, 5,'Civil Servant', '00:08:15'),
-(2, 2, 'London', 84, 4,'Minister of State', '00:06:30'),
-(2, 2, 'Wales', 96, 2,'Deputy Prime Minister', '00:07:20');
+
+INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, time_taken) VALUES
+(1, 1, 'Washington, D.C.', 10, 1, '00:05:23'),
+(1, 1, 'Missouri River', 8, 2, '00:08:15'),
+(2, 2, 'London', 10, 1, '00:06:30'),
+(2, 2, 'Wales', 9, 2, '00:07:20');
+
