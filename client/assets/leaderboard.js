@@ -9,7 +9,7 @@ async function load() {
   };
   console.log("loading leaderboard");
   const response = await fetch(
-    "http://localhost:3000/leaderboard/students",
+    "https://pm-challenge-backend.onrender.com/leaderboard/students",
     options
   );
   const resp = await response.json();
@@ -20,17 +20,17 @@ async function load() {
     const tdName = document.createElement("td");
     tdName.textContent = student.name;
     const tdRank = document.createElement("td");
-    if (student.rank === 1){
-      tdRank.textContent = "Prime Minister"
+    if (student.rank === 1) {
+      tdRank.textContent = "Prime Minister";
     } else if (student.rank == 2) {
-      tdRank.textContent = "Deputy Prime Minister"
+      tdRank.textContent = "Deputy Prime Minister";
     } else if (student.rank == 3) {
-      tdRank.textContent = "Minister"
+      tdRank.textContent = "Minister";
     } else if (student.rank == 4) {
-      tdRank.textContent = "Governor"
+      tdRank.textContent = "Governor";
     } else if (student.rank == 5) {
-      tdRank.textContent = "Mayor"
-    } 
+      tdRank.textContent = "Mayor";
+    }
     // tdRank.textContent = student.rank;
     const tdScore = document.createElement("td");
     tdScore.textContent = student.score;

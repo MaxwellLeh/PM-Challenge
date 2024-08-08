@@ -16,7 +16,7 @@ form.addEventListener("submit", async function (e) {
     currentQuestion = questions[index + 1];
     updatedom();
   } else {
-    await saveResults(score, 1, Math.floor(score / questions.length)); 
+    await saveResults(score, 1, Math.floor(score / questions.length));
     window.location.assign("leaderboard.html");
   }
 });
@@ -35,13 +35,18 @@ const saveResults = async (score, country_id, rank) => {
       rank: rank,
     }),
   };
-  const response = await fetch("http://localhost:3000/quiz-results/", options);
+  const response = await fetch(
+    "https://pm-challenge-backend.onrender.com/quiz-results/",
+    options
+  );
   console.log("save result ", response);
   return response.ok;
 };
 
 const fetchQuestions = async () => {
-  const response = await fetch("http://localhost:3000/quiz-questions/1"); 
+  const response = await fetch(
+    "https://pm-challenge-backend.onrender.com/quiz-questions/1"
+  );
 
   if (!response.ok) {
     console.log("err");
@@ -73,7 +78,6 @@ const updatedom = () => {
   const { correct_answer, option_2, option_3, option_4 } = currentQuestion;
   let options = [correct_answer, option_2, option_3, option_4];
 
-  
   options = shuffleArray(options);
 
   const elements = document.querySelectorAll(".quiz-buttons");
