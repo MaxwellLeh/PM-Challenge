@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS QuizResults;
  
 CREATE TABLE Users (
-
     user_id SERIAL PRIMARY KEY,
     role VARCHAR(50) CHECK (role IN ('Student', 'Teacher')) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -37,7 +36,7 @@ CREATE TABLE QuizResults (
     country_id INT,
     student_answer TEXT NOT NULL,
     total_score INT NOT NULL,
-    rank VARCHAR(50),
+    rank INT,
     time_taken TIME,
     FOREIGN KEY (student_id) REFERENCES Users(user_id)
         ON DELETE CASCADE,
@@ -87,16 +86,12 @@ VALUES
     ('Teacher', 4, 'Good interaction with students.', 'More practical sessions.', 'Appreciate the efforts.'),
     ('Teacher', 5, 'Well-structured and informative.', 'None.', 'A great experience.');
 
- 
-
- 
-INSERT INTO Countries (country_id, country_name, capital, continent, population, area, official_language) VALUES
-(1, 'USA', 'Washington, D.C.', 'North America', 331002651, 9833517, 'English'),
-(2, 'UK', 'London', 'Western Europe', 67886011, 242495, 'English'),
-(3, 'India', 'New Delhi', 'Asia', 1380004385, 3287263, 'Hindi, English'),
-(4, 'Egypt', 'Cairo', 'Africa', 102334404, 1002450, 'Arabic'),
-(5, 'Germany', 'Berlin', 'Western Europe', 83783942, 357022, 'German');
-
+INSERT INTO Countries (country_name) VALUES
+('USA'),
+('UK'),
+('India'),
+('Egypt'),
+('Germany');
 
 -- Questions for USA
 INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
@@ -229,8 +224,10 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (5, 'Which German composer is known for his opera "The Ring Cycle"?', 'Richard Wagner', 'Johann Sebastian Bach', 'Ludwig van Beethoven', 'Wolfgang Amadeus Mozart', 'hard');
 
 -- Insert data into QuizResults table
+
 INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, time_taken) VALUES
 (1, 1, 'Washington, D.C.', 10, 1, '00:05:23'),
 (1, 1, 'Missouri River', 8, 2, '00:08:15'),
 (2, 2, 'London', 10, 1, '00:06:30'),
 (2, 2, 'Wales', 9, 2, '00:07:20');
+
