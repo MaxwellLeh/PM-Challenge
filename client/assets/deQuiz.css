@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg);
   margin: 0;
   background-size: cover;
   background-position: center;
@@ -65,11 +66,11 @@ nav a.leaderboard {
 }
 
 nav a:hover {
-  color: #007bff;
+  color: #cd1f44;
 }
 
 .logout-button {
-  background-color: #ff4d4d;
+  background-color: #cd1f44;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -81,7 +82,7 @@ nav a:hover {
 }
 
 .logout-button:hover {
-  background-color: #cc0000;
+  background-color: #cd1f44;
 }
 
 
@@ -145,7 +146,7 @@ nav a:hover {
 }
 
 .feedback-button {
-  background-color: #28a745;
+  background-color: #cd1f44;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -153,8 +154,4 @@ nav a:hover {
   text-decoration: none;
   font-size: 1rem;
   cursor: pointer;
-}
-
-.feedback-button:hover {
-  background-color: #218838;
 }
