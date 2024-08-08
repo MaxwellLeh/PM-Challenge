@@ -1,5 +1,13 @@
 
-CREATE TABLE IF NOT EXISTS Users (
+
+DROP TABLE IF EXISTS Feedback;
+DROP TABLE IF EXISTS QuizQuestions;
+DROP TABLE IF EXISTS Countries;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS QuizResults;
+ 
+CREATE TABLE Users (
+
     user_id SERIAL PRIMARY KEY,
     role VARCHAR(50) CHECK (role IN ('Student', 'Teacher')) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -9,10 +17,11 @@ CREATE TABLE IF NOT EXISTS Users (
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+ 
 -- Countries Table
-CREATE TABLE IF NOT EXISTS Countries (
+CREATE TABLE Countries (
     country_id SERIAL PRIMARY KEY,
+    country_name VARCHAR(30) NOT NULL
     country_name VARCHAR(100) NOT NULL,
     capital VARCHAR(100),
     continent VARCHAR(50),
@@ -20,31 +29,44 @@ CREATE TABLE IF NOT EXISTS Countries (
     area INT,
     official_language VARCHAR(50)
 );
-
+ 
 -- QuizResults
-CREATE TABLE IF NOT EXISTS QuizResults (
+CREATE TABLE QuizResults (
     result_id SERIAL PRIMARY KEY,
     student_id INT,
     country_id INT,
     student_answer TEXT NOT NULL,
     total_score INT NOT NULL,
-    rank INT CHECK(rank BETWEEN 1 AND 5),
+    rank VARCHAR(50),
     time_taken TIME,
     FOREIGN KEY (student_id) REFERENCES Users(user_id)
         ON DELETE CASCADE,
     FOREIGN KEY (country_id) REFERENCES Countries(country_id)
         ON DELETE CASCADE
 );
-
-
+ 
+ 
 -- Feedback Table
-CREATE TABLE IF NOT EXISTS Feedback (
+CREATE TABLE Feedback (
     feedback_id SERIAL PRIMARY KEY,
-    user_id INT,
+    role VARCHAR(50) NOT NULL,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
     comments TEXT,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-        ON DELETE SET NULL
+    improvements TEXT,
+    additional_comments TEXT,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the QuizQuestions table
+CREATE TABLE QuizQuestions (
+    question_id SERIAL PRIMARY KEY,
+    country_id INT REFERENCES Countries(country_id) ON DELETE CASCADE,
+    question_text TEXT NOT NULL,
+    correct_answer TEXT NOT NULL,
+    option_2 TEXT NOT NULL,
+    option_3 TEXT NOT NULL,
+    option_4 TEXT NOT NULL,
+    difficulty VARCHAR(10) -- 'easy', 'medium', 'hard'
 );
 
 -- Insert dummy users into the Users table
@@ -57,26 +79,23 @@ INSERT INTO Users (user_id, role, first_name, last_name, email, username, passwo
 (4, 'Teacher', 'Frank', 'Garcia', 'frank.garcia@example.com', 'frank_garcia', 'teacherpass3');
 
 
--- Insert the countries into the Countries table
+INSERT INTO Feedback (role, rating, comments, improvements, additional_comments)
+VALUES 
+    ('Student', 4, 'Great course, but could use more examples.', 'More hands-on exercises.', 'Looking forward to more content in the future.'),
+    ('Teacher', 5, 'Excellent material and well-organized.', 'None.', 'Keep up the good work!'),
+    ('Student', 3, 'The content was good, but the pace was a bit fast.', 'Slower pacing would help.', 'Overall, a solid course.'),
+    ('Teacher', 4, 'Good interaction with students.', 'More practical sessions.', 'Appreciate the efforts.'),
+    ('Teacher', 5, 'Well-structured and informative.', 'None.', 'A great experience.');
+
+ 
+
+ 
 INSERT INTO Countries (country_id, country_name, capital, continent, population, area, official_language) VALUES
 (1, 'USA', 'Washington, D.C.', 'North America', 331002651, 9833517, 'English'),
 (2, 'UK', 'London', 'Western Europe', 67886011, 242495, 'English'),
 (3, 'India', 'New Delhi', 'Asia', 1380004385, 3287263, 'Hindi, English'),
 (4, 'Egypt', 'Cairo', 'Africa', 102334404, 1002450, 'Arabic'),
 (5, 'Germany', 'Berlin', 'Western Europe', 83783942, 357022, 'German');
-
-
--- Create the QuizQuestions table
-CREATE TABLE IF NOT EXISTS QuizQuestions (
-    question_id SERIAL PRIMARY KEY,
-    country_id INT REFERENCES Countries(country_id) ON DELETE CASCADE,
-    question_text TEXT NOT NULL,
-    correct_answer TEXT NOT NULL,
-    option_2 TEXT NOT NULL,
-    option_3 TEXT NOT NULL,
-    option_4 TEXT NOT NULL,
-    difficulty VARCHAR(10) -- 'easy', 'medium', 'hard'
-);
 
 
 -- Questions for USA
@@ -88,7 +107,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (1, 'Which city is known as the "Big Apple"?', 'New York City', 'Los Angeles', 'Chicago', 'Miami', 'easy'),
 (1, 'Which is the largest state in the USA by area?', 'Alaska', 'Texas', 'California', 'Montana', 'easy'),
 (1, 'Which USA holiday celebrates the country’s independence?', 'Fourth of July', 'Thanksgiving', 'Memorial Day', 'Labor Day', 'easy'),
-
+ 
 (1, 'Who was the first President of the USA?', 'George Washington', 'Thomas Jefferson', 'Abraham Lincoln', 'John Adams', 'medium'),
 (1, 'Which war was fought between the North and South regions in the USA?', 'Civil War', 'Revolutionary War', 'World War I', 'War of 1812', 'medium'),
 (1, 'Which document was signed on July 4, 1776?', 'Declaration of Independence', 'Constitution', 'Bill of Rights', 'Emancipation Proclamation', 'medium'),
@@ -96,7 +115,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (1, 'Who wrote the "Star-Spangled Banner"?', 'Francis Scott Key', 'Thomas Paine', 'James Madison', 'John Jay', 'medium'),
 (1, 'What is the largest national park in the USA?', 'Wrangell-St. Elias', 'Yellowstone', 'Grand Canyon', 'Yosemite', 'medium'),
 (1, 'Which USA state is known as the "Empire State"?', 'New York', 'California', 'Texas', 'Florida', 'medium'),
-
+ 
 (1, 'Which USA President was in office during the Great Depression and World War II?', 'Franklin D. Roosevelt', 'Herbert Hoover', 'Harry S. Truman', 'Woodrow Wilson', 'hard'),
 (1, 'Which USA state was purchased from Russia in 1867?', 'Alaska', 'Hawaii', 'Washington', 'Oregon', 'hard'),
 (1, 'What is the smallest state in the USA by area?', 'Rhode Island', 'Delaware', 'Connecticut', 'New Jersey', 'hard'),
@@ -104,8 +123,8 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (1, 'Which USA amendment abolished slavery?', '13th Amendment', '14th Amendment', '15th Amendment', '19th Amendment', 'hard'),
 (1, 'Which USA river forms part of the border between Texas and Mexico?', 'Rio Grande', 'Mississippi River', 'Colorado River', 'Arkansas River', 'hard'),
 (1, 'Which USA President issued the Emancipation Proclamation?', 'Abraham Lincoln', 'Andrew Johnson', 'Ulysses S. Grant', 'James Buchanan', 'hard');
-
--- Questions for UK 
+ 
+-- Questions for UK
 INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (2, 'What is the capital of the UK?', 'London', 'Manchester', 'Edinburgh', 'Birmingham', 'easy'),
 (2, 'Which UK country is known as the "Land of the Red Dragon"?', 'Wales', 'Scotland', 'England', 'Northern Ireland', 'easy'),
@@ -114,7 +133,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (2, 'Which UK city is famous for its association with The Beatles?', 'Liverpool', 'Manchester', 'London', 'Birmingham', 'easy'),
 (2, 'What is the name of the UK’s currency?', 'Pound Sterling', 'Euro', 'Dollar', 'Franc', 'easy'),
 (2, 'Which UK country is known for the Loch Ness Monster?', 'Scotland', 'Wales', 'England', 'Northern Ireland', 'easy'),
-
+ 
 (2, 'Which British Prime Minister served during World War II?', 'Winston Churchill', 'Neville Chamberlain', 'Clement Attlee', 'Margaret Thatcher', 'medium'),
 (2, 'What is the UK’s highest mountain?', 'Ben Nevis', 'Snowdon', 'Scafell Pike', 'Slieve Donard', 'medium'),
 (2, 'Which UK city is home to the oldest university?', 'Oxford', 'Cambridge', 'Edinburgh', 'St. Andrews', 'medium'),
@@ -122,7 +141,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (2, 'Who wrote the play "Hamlet"?', 'William Shakespeare', 'Christopher Marlowe', 'John Milton', 'Ben Jonson', 'medium'),
 (2, 'Which London landmark is associated with the crowning of British monarchs?', 'Westminster Abbey', 'Buckingham Palace', 'The Tower of London', 'St. Paul’s Cathedral', 'medium'),
 (2, 'Which UK war was fought between 1337 and 1453?', 'Hundred Years’ War', 'War of the Roses', 'English Civil War', 'Napoleonic Wars', 'medium'),
-
+ 
 (2, 'What was the last British colony to gain independence?', 'Hong Kong', 'Singapore', 'Cyprus', 'Jamaica', 'hard'),
 (2, 'Which UK Prime Minister served during the Falklands War?', 'Margaret Thatcher', 'James Callaghan', 'Tony Blair', 'John Major', 'hard'),
 (2, 'What was the name of the ship that famously sank in 1912?', 'Titanic', 'Lusitania', 'Britannic', 'Olympic', 'hard'),
@@ -130,7 +149,7 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (2, 'Which UK city was the site of the 2012 Summer Olympics?', 'London', 'Manchester', 'Glasgow', 'Birmingham', 'hard'),
 (2, 'Which British scientist is known for the theory of evolution?', 'Charles Darwin', 'Isaac Newton', 'Michael Faraday', 'James Clerk Maxwell', 'hard'),
 (2, 'Which UK artist painted "The Persistence of Memory"?', 'Salvador Dalí', 'David Hockney', 'Francis Bacon', 'J.M.W. Turner', 'hard');
-
+ 
 -- Questions for India
 INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, option_3, option_4, difficulty) VALUES
 (3, 'What is the capital of India?', 'New Delhi', 'Mumbai', 'Kolkata', 'Chennai', 'easy'),
@@ -208,7 +227,6 @@ INSERT INTO QuizQuestions (country_id, question_text, correct_answer, option_2, 
 (5, 'Which German film director is known for his work on "Metropolis" and "M"?', 'Fritz Lang', 'Werner Herzog', 'Rainer Werner Fassbinder', 'Wim Wenders', 'hard'),
 (5, 'What is the name of the German national football team’s stadium?', 'Allianz Arena', 'Olympiastadion', 'Volkswagen Arena', 'Signal Iduna Park', 'hard'),
 (5, 'Which German composer is known for his opera "The Ring Cycle"?', 'Richard Wagner', 'Johann Sebastian Bach', 'Ludwig van Beethoven', 'Wolfgang Amadeus Mozart', 'hard');
-
 
 -- Insert data into QuizResults table
 INSERT INTO QuizResults (student_id, country_id, student_answer, total_score, rank, time_taken) VALUES
