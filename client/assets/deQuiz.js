@@ -4,6 +4,7 @@ let currentQuestion = [];
 let score = 0;
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
+  console.log("Listening event");
   const clicked = e.submitter.textContent;
   const index = questions.indexOf(currentQuestion);
   // if send after every question fetch request here
@@ -14,7 +15,7 @@ form.addEventListener("submit", async function (e) {
     currentQuestion = questions[index + 1];
     updatedom();
   } else {
-    await saveResults(score, 2, Math.floor(score / questions.length)); // Change conuntry code 2
+    await saveResults(score, 5, Math.floor(score / questions.length)); // Change conuntry code 2
     // if send at end to results fetch request here
     window.location.assign("leaderboard.html");
   }
@@ -38,7 +39,7 @@ const saveResults = async (score, country_id, rank) => {
   return response.ok;
 };
 const fetchQuestions = async () => {
-  const response = await fetch("http://localhost:3000/quiz-questions/2"); // Change conuntry code 2
+  const response = await fetch("http://localhost:3000/quiz-questions/5"); // Change conuntry code 2
 
   if (!response.ok) {
     console.log("err");

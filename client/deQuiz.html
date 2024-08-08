@@ -1,115 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz</title>
-  <link rel="stylesheet" href="assets/deQuiz.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <div class="nav-left">
-        <img src="assets/logo.jpg" alt="Logo" class="logo">
-        <a href="board.html" class="leaderboard">WORLD MAP</a>
-      </div>
-      <h1 class="header-title">QUIZ</h1>
-      <button id="logout-button" class="logout-button">Logout</button>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="assets/deQuiz.css" />
+    <script src="./assets/deQuiz.js" defer></script>
+  </head>
+  <body>
+    <!-- <header>
+      <nav>
+        <div class="nav-left">
+          <img src="assets/logo.jpg" alt="Logo" class="logo" />
+          <a href="board.html" class="leaderboard">WORLD MAP</a>
+        </div>
+        <h1 class="header-title">QUIZ</h1>
+        <button id="logout-button" class="logout-button">Logout</button>
+      </nav>
+    </header>
 
-  <div class="background-strip left"></div>
-  <div class="background-strip right"></div>
+    <div class="background-strip left"></div>
+    <div class="background-strip right"></div> -->
 
-  <div class="parent-div">
-    <div class="example">
-      <div class="question-div">
-        <h1 class="question">What is Capital City of Germany?</h1>
-        <p>Score: <span class="score">0</span></p>
+    <div class="parent-div">
+      <div class="example">
+        <div class="question-div">
+          <h1 class="question">What is Capital City of Germany?</h1>
+          <p>Score: <span class="score">0</span></p>
+        </div>
+        <form class="form">
+          <div class="quiz-buttons-div">
+            <button class="quiz-buttons">Option 1</button>
+          </div>
+          <div class="quiz-buttons-div">
+            <button class="quiz-buttons">Option 2</button>
+          </div>
+          <div class="quiz-buttons-div">
+            <button class="quiz-buttons">Option 3</button>
+          </div>
+          <div class="quiz-buttons-div">
+            <button class="quiz-buttons">Option 4</button>
+          </div>
+        </form>
       </div>
-      <form class="form">
-        <div class="quiz-buttons-div">
-          <button type="button" class="quiz-buttons">Option 1</button>
-        </div>
-        <div class="quiz-buttons-div">
-          <button type="button" class="quiz-buttons">Option 2</button>
-        </div>
-        <div class="quiz-buttons-div">
-          <button type="button" class="quiz-buttons">Option 3</button>
-        </div>
-        <div class="quiz-buttons-div">
-          <button type="button" class="quiz-buttons">Option 4</button>
-        </div>
-      </form>
     </div>
-  </div>
+    <!-- 
+    <script>
+      document
+        .getElementById("logout-button")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
+        });
 
-  <script>
-    document.getElementById('logout-button').addEventListener('click', function() {
-      window.location.href = 'login.html';
-    });
+      const form = document.querySelector(".form");
+      let questions = [];
+      let currentQuestion = {};
+      let score = 0;
 
-    const form = document.querySelector(".form");
-    let questions = [];
-    let currentQuestion = {};
-    let score = 0;
+      form.addEventListener("click", function (e) {
+        if (e.target.classList.contains("quiz-buttons")) {
+          const clicked = e.target.textContent;
+          const index = questions.indexOf(currentQuestion);
 
-    form.addEventListener("click", function (e) {
-      if (e.target.classList.contains("quiz-buttons")) {
-        const clicked = e.target.textContent;
-        const index = questions.indexOf(currentQuestion);
-        
-        if (clicked === currentQuestion.correct_answer) {
-          score++;
+          if (clicked === currentQuestion.correct_answer) {
+            score++;
+          }
+
+          if (index + 1 < questions.length) {
+            currentQuestion = questions[index + 1];
+            updateDOM();
+          } else {
+            window.location.assign("leaderboard.html");
+          }
         }
-
-        if (index + 1 < questions.length) {
-          currentQuestion = questions[index + 1];
-          updateDOM();
-        } else {
-          window.location.assign("leaderboard.html");
-        }
-      }
-    });
-
-    const fetchQuestions = async () => {
-      const response = await fetch("http://127.0.0.1:3000/quiz-questions/5");
-      if (!response.ok) {
-        console.log("err");
-        return;
-      }
-      const data = await response.json();
-      questions = data;
-      currentQuestion = questions[0];
-      updateDOM();
-    };
-
-    const updateDOM = () => {
-      const titleEl = document.querySelector(".question");
-      titleEl.textContent = currentQuestion.question_text;
-
-      const scoreEl = document.querySelector(".score");
-      scoreEl.textContent = score;
-
-      const { correct_answer, option_2, option_3, option_4 } = currentQuestion;
-      const options = [correct_answer, option_2, option_3, option_4];
-      const shuffledOptions = shuffleArray(options);
-
-      const elements = document.querySelectorAll(".quiz-buttons");
-      elements.forEach((el, i) => {
-        el.textContent = shuffledOptions[i];
       });
-    };
 
-    const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    };
+      const fetchQuestions = async () => {
+        const response = await fetch("http://127.0.0.1:3000/quiz-questions/5");
+        if (!response.ok) {
+          console.log("err");
+          return;
+        }
+        const data = await response.json();
+        questions = data;
+        currentQuestion = questions[0];
+        updateDOM();
+      };
 
-    fetchQuestions();
-  </script>
-</body>
+      const updateDOM = () => {
+        const titleEl = document.querySelector(".question");
+        titleEl.textContent = currentQuestion.question_text;
+
+        const scoreEl = document.querySelector(".score");
+        scoreEl.textContent = score;
+
+        const { correct_answer, option_2, option_3, option_4 } =
+          currentQuestion;
+        const options = [correct_answer, option_2, option_3, option_4];
+        const shuffledOptions = shuffleArray(options);
+
+        const elements = document.querySelectorAll(".quiz-buttons");
+        elements.forEach((el, i) => {
+          el.textContent = shuffledOptions[i];
+        });
+      };
+
+      const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      };
+
+      fetchQuestions();
+    </script> -->
+  </body>
 </html>
